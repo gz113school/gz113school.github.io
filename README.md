@@ -37,21 +37,6 @@
 
 > *本網站為社團申報示範頁面 | 發起人：高一 (11) 班 沈子越*
 
-* ☁️ **零成本引進資源**：推廣微軟官方免費的 Microsoft 365 A1 教育版，不花學校一分錢[span_8](start_span)[span_8](end_span)。
-* 🎒 **解決教學痛點**：推廣 OneDrive 雲端與 OneNote 電子課堂筆記本，告別隨身碟中毒與檔案遺失[span_9](start_span)[span_9](end_span)。
-* ⚡ **提效自動化**：運用圖形化工具協助老師處理成績數據分析與請假流程自動化[span_10](start_span)[span_10](end_span)。
-
----
-
-## 📬 快速聯繫
-
-* **發起人**：沈子越（高一 11 班）[span_11](start_span)[span_11](end_span)
-* **聯絡信箱**：[GZ113TE@hotmail.com](mailto:GZ113TE@hotmail.com?subject=【數字校園社團】諮詢與建議)[span_12](start_span)[span_12](end_span) *(點擊可直接調用郵件 App)*
-
----
-
-> *本網站為社團申報示範頁面 | 發起人：高一 (11) 班 沈子越*[span_13](start_span)[span_13](end_span)
-
 ---
 
 > *本網站為社團申報示範頁面 | 發起人：高一 (11) 班 沈子越*
