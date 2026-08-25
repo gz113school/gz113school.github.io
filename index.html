@@ -34,7 +34,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* 动画进度条与遮罩 */
+        /* 加载进度条与遮罩 */
         #progress-bar {
             position: fixed; top: 0; left: 0; height: 3px;
             background-color: var(--primary-color); width: 0%; z-index: 10001;
@@ -61,15 +61,10 @@
         }
         .btn-icon:hover { background-color: var(--card-bg); }
 
-        /* 纯色科技感 Banner */
+        /* 纯色 Banner */
         .hero-banner-pure {
-            width: 100%;
-            border-radius: 8px;
-            background-color: var(--primary-color);
-            padding: 25px 20px;
-            box-sizing: border-box;
-            color: #ffffff;
-            margin-bottom: 20px;
+            width: 100%; border-radius: 8px; background-color: var(--primary-color);
+            padding: 25px 20px; box-sizing: border-box; color: #ffffff; margin-bottom: 20px;
         }
         .hero-banner-pure h1 { margin: 0; font-size: 1.5rem; }
         .hero-banner-pure p { margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95rem; }
@@ -92,8 +87,7 @@
         .grid-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
             padding: 15px; border-radius: 6px; text-decoration: none; color: var(--text-color);
-            display: flex; flex-direction: column; justify-content: space-between;
-            transition: border-color 0.2s;
+            display: flex; flex-direction: column; justify-content: space-between; transition: border-color 0.2s;
         }
         .grid-card:hover { border-color: var(--primary-color); }
         .grid-card h4 { margin: 0 0 5px 0; color: var(--primary-color); }
@@ -128,27 +122,30 @@
         }
         .back-to-top:hover { transform: translateY(-3px); background-color: var(--primary-color); color: white; }
 
+        /* ------------------ 抽屉弹窗核心 CSS ------------------ */
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 998;
         }
         .overlay.active { opacity: 1; visibility: visible; }
 
+        /* 左侧抽屉菜单 */
         .drawer-left {
-            position: fixed; top: 0; left: -85%; width: 75%; max-width: 320px; height: 100%;
+            position: fixed; top: 0; left: -85%; width: 75%; max-width: 300px; height: 100%;
             background-color: var(--bg-color); box-shadow: 2px 0 10px rgba(0,0,0,0.15);
-            transition: left 0.3s; z-index: 999; padding: 25px 20px; box-sizing: border-box; overflow-y: auto;
+            transition: left 0.3s ease-in-out; z-index: 999; padding: 25px 20px; box-sizing: border-box; overflow-y: auto;
         }
         .drawer-left.open { left: 0; }
 
+        /* 右侧反馈抽屉 */
         .drawer-right {
-            position: fixed; top: 0; right: -85%; width: 80%; max-width: 400px; height: 100%;
+            position: fixed; top: 0; right: -85%; width: 80%; max-width: 350px; height: 100%;
             background-color: var(--bg-color); box-shadow: -2px 0 10px rgba(0,0,0,0.15);
-            transition: right 0.3s; z-index: 1000; padding: 25px 20px; box-sizing: border-box; overflow-y: auto;
+            transition: right 0.3s ease-in-out; z-index: 1000; padding: 25px 20px; box-sizing: border-box; overflow-y: auto;
         }
         .drawer-right.open { right: 0; }
 
-        .menu-list { list-style: none; padding: 0; }
+        .menu-list { list-style: none; padding: 0; margin-top: 15px; }
         .menu-item { padding: 12px 10px; border-bottom: 1px solid var(--border-color); cursor: pointer; font-weight: 600; }
         .menu-item:hover { color: var(--primary-color); }
 
@@ -176,13 +173,13 @@
         </div>
     </header>
 
-    <!-- 纯色科技 Banner (替代第三方图片) -->
+    <!-- 纯色 Banner -->
     <div class="hero-banner-pure">
         <h1 data-zh="广州市第113中学 · 数字校园社团" data-zht="廣州市第113中學 · 數位校園社團" data-en="GZ113 Digital Campus Club">广州市第113中学 · 数字校园社团</h1>
-        <p data-zh="探索零成本低门槛的数字化工具，服务日常学习与校园协同" data-zht="探索零成本低門檻的數位化工具，服務日常學習與校園協同" data-en="Exploring zero-cost digital tools for campus productivity">探索零成本低门槛的数字化协同工具，服务日常学习与校园协同</p>
+        <p data-zh="探索零成本低门槛的数字化工具，服务日常学习与校园协同" data-zht="探索零成本低門檻的數位化工具，服務日常學習與校園協同" data-en="Exploring zero-cost digital tools for campus productivity">探索零成本低门槛的数字化工具，服务日常学习与校园协同</p>
     </div>
 
-    <!-- 首页主内容 -->
+    <!-- 首页页面 -->
     <div id="page-home" class="page-content active">
         <h2>💡 <span data-zh="社团发起理念" data-zht="社團發起理念" data-en="Mission">社团发起理念</span> <span class="badge" data-zh="筹备中" data-zht="籌備中" data-en="Preparing">筹备中</span></h2>
         <p data-zh="本社团由高一(11)班沈子越发起，立足新校区硬件条件，旨在帮助全校师生利用微软教育版等工具提升无纸化学习与协作效率。" 
@@ -191,7 +188,7 @@
            本社团由高一(11)班沈子越发起，立足新校区硬件条件，旨在帮助全校师生利用微软教育版等工具提升无纸化学习与协作效率。
         </p>
 
-        <!-- 🔗 官方工具跳转链接 (带外部链接跳转) -->
+        <!-- 🔗 外部链接 -->
         <h2 data-zh="🔗 拟推广核心应用与官方直达" data-zht="🔗 擬推廣核心應用與官方直達" data-en="🔗 Featured Tools & Direct Links">🔗 拟推广核心应用与官方直达</h2>
         <div class="grid-container">
             <a class="grid-card" href="https://www.microsoft.com/zh-cn/microsoft-365/onedrive/online-cloud-storage" target="_blank">
@@ -231,7 +228,7 @@
             <p data-zh="完全可以。我们推广的工具全都是图形化操作，上手门槛极低。" data-zht="完全可以。我們推廣的工具全都是圖形化操作，上手門檻極低。" data-en="Yes! All promoted tools are low-barrier, graphic-based apps.">完全可以。我们推广的工具全都是图形化操作，上手门槛极低。</p>
         </details>
 
-        <!-- 🏫 广州市第一一三中学学校介绍 (最下方) -->
+        <!-- 🏫 学校介绍 -->
         <h2 data-zh="🏫 关于广州市第一一三中学" data-zht="🏫 關於廣州市第一一三中學" data-en="🏫 About Guangzhou 113 Middle School">🏫 关于广州市第一一三中学</h2>
         <div class="card" style="font-size: 0.9rem; color: #555; line-height: 1.7;">
             <p><strong>广州市第一一三中学</strong>创办于 1978 年，坐落于广州市天河区核心地段，是一所办学历史悠久、实力突出的公办完全中学。学校先后被评为<strong>广东省一级学校</strong>及<strong>广东省普通高中教学水平优秀学校</strong>。</p>
@@ -239,7 +236,7 @@
         </div>
     </div>
 
-    <!-- 建设草案 -->
+    <!-- 建设草案页面 -->
     <div id="page-about" class="page-content">
         <h1 data-zh="📖 社团建设草案" data-zht="📖 社團建設草案" data-en="📖 Club Proposal">📖 社团建设草案</h1>
         <div class="card">
@@ -252,7 +249,7 @@
         </div>
     </div>
 
-    <!-- 预报名 -->
+    <!-- 预报名页面 -->
     <div id="page-form" class="page-content">
         <h1 data-zh="📋 意见征集与预报名" data-zht="📋 意見徵集與預報名" data-en="📋 Feedback & Join">📋 意见征集与预报名</h1>
         <div class="card" style="text-align: center; padding: 30px;">
@@ -262,7 +259,7 @@
         </div>
     </div>
 
-    <!-- Footer 底部栏 -->
+    <!-- Footer 底部 -->
     <footer>
         <div>
             <span style="font-size:0.85rem; color:#888;">© 2026 广州市第113中学 数字校园社团</span>
@@ -278,14 +275,27 @@
 
     <button class="back-to-top" onclick="scrollToTop()" title="回到顶部">▲</button>
 
+    <!-- ------------------ 抽屉弹窗与遮罩 DOM ------------------ -->
     <div id="overlay" class="overlay" onclick="closeAllDrawers()"></div>
+
+    <!-- 左侧抽屉导航 -->
     <div id="leftDrawer" class="drawer-left">
-        <h3>Menu</h3>
+        <h3 style="margin-top: 0;">🧭 导航菜单</h3>
         <ul class="menu-list">
             <li class="menu-item" onclick="switchPage('page-home')" data-zh="🏠 筹备首页" data-zht="🏠 籌備首頁" data-en="🏠 Home">🏠 筹备首页</li>
             <li class="menu-item" onclick="switchPage('page-about')" data-zh="📖 建设草案" data-zht="📖 建設草案" data-en="📖 Proposal">📖 建设草案</li>
             <li class="menu-item" onclick="switchPage('page-form')" data-zh="📋 意见与预报名" data-zht="📋 意見與預報名" data-en="📋 Contact">📋 意见与预报名</li>
+            <li class="menu-item" onclick="openRightDrawer('contactDrawer')" data-zh="📬 快捷反馈抽屉" data-zht="📬 快捷反饋抽屜" data-en="📬 Quick Feedback">📬 快捷反馈抽屉</li>
         </ul>
+    </div>
+
+    <!-- 右侧抽屉弹窗 (意见反馈) -->
+    <div id="contactDrawer" class="drawer-right">
+        <h3 style="margin-top: 0;" data-zh="📬 意见与建议" data-zht="📬 意見與建議" data-en="📬 Feedback">📬 意见与建议</h3>
+        <p style="font-size:0.9rem;" data-zh="发起人：高一 (11) 班 沈子越" data-zht="發起人：高一 (11) 班 沈子越" data-en="Founder: Shen Ziyue (Grade 10, Class 11)">发起人：高一 (11) 班 沈子越</p>
+        <p style="font-size:0.85rem; color:#666;" data-zh="对于社团建设有任何想法或建议，欢迎随时联系！" data-zht="對於社團建設有任何想法或建議，歡迎隨時聯繫！" data-en="Feel free to contact us for any club ideas!">对于社团建设有任何想法或建议，欢迎随时联系！</p>
+        <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【数字校园社团】意见反馈" 
+           data-zh="✉️ 发送 Email" data-zht="✉️ 發送 Email" data-en="✉️ Send Email">✉️ 发送 Email</a>
     </div>
 
     <script>
@@ -327,9 +337,16 @@
             }
         }
 
+        /* ------------------ 抽屉交互 JS ------------------ */
         function openLeftDrawer() {
             closeAllDrawers();
             document.getElementById('leftDrawer').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function openRightDrawer(drawerId) {
+            closeAllDrawers();
+            document.getElementById(drawerId).classList.add('open');
             document.getElementById('overlay').classList.add('active');
         }
 
@@ -342,6 +359,7 @@
 
         function closeAllDrawers() {
             document.getElementById('leftDrawer').classList.remove('open');
+            document.querySelectorAll('.drawer-right').forEach(d => d.classList.remove('open'));
             document.getElementById('overlay').classList.remove('active');
         }
     </script>
