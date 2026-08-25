@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>廣州113中學 - 數字校園與資訊應用社團（籌備中）</title>
+    <title>广州113中学 - 数字校园与信息应用社团（筹备中）</title>
     <style>
         :root {
             --primary-color: #0969da;
@@ -20,7 +20,7 @@
             background-color: #ffffff;
         }
 
-        /* 頂部 Header */
+        /* 顶部 Header */
         header {
             display: flex;
             align-items: center;
@@ -54,7 +54,7 @@
             margin-bottom: 15px;
         }
 
-        /* 頁面切換控制 */
+        /* 页面切换控制 */
         .page-content { display: none; }
         .page-content.active { display: block; }
 
@@ -70,7 +70,7 @@
         }
         .overlay.active { opacity: 1; visibility: visible; }
 
-        /* 左側滑出主選單 */
+        /* 左侧滑出主菜单 */
         .drawer-left {
             position: fixed;
             top: 0; left: -85%;
@@ -85,7 +85,7 @@
         }
         .drawer-left.open { left: 0; }
 
-        /* 右側滑出抽屜頁面 */
+        /* 右侧滑出抽屉页面 */
         .drawer-right {
             position: fixed;
             top: 0; right: -85%;
@@ -114,7 +114,7 @@
             cursor: pointer; color: #57606a;
         }
 
-        /* 選單列表樣式 */
+        /* 菜单列表样式 */
         .menu-list { list-style: none; padding: 0; margin: 0; }
         .menu-item {
             padding: 12px 10px;
@@ -142,90 +142,90 @@
 </head>
 <body>
 
-    <!-- 頂部列（左上角三條槓） -->
+    <!-- 顶部栏（左上角三条杠） -->
     <header>
         <button class="menu-btn" onclick="openLeftDrawer()">☰</button>
-        <span class="header-title">數字校園與資訊應用社團</span>
+        <span class="header-title">数字校园与信息应用社团</span>
     </header>
 
-    <!-- 1. 欄目一：籌備首頁 (預設顯示) -->
+    <!-- 1. 栏目一：筹备首页 (默认显示) -->
     <div id="page-home" class="page-content active">
-        <h1>💡 數字校園與資訊應用社團 <span class="badge">籌備中</span></h1>
-        <p>歡迎來到 <strong>廣州 113 中學 - 數字校園與資訊應用社團</strong> 的官方籌備主頁！</p>
-        <p>本社團由高一 (11) 班沈子越發起，目前正在完善建設草案並推進共青團審批流程。我們希望立足新校區的新設備優勢，透過「零成本、低門檻」的數位化工具，為全校師生提供實用、高效的校園服務。</p>
+        <h1>💡 数字校园与信息应用社团 <span class="badge">筹备中</span></h1>
+        <p>欢迎来到 <strong>广州 113 中学 - 数字校园与信息应用社团</strong> 的官方筹备主页！</p>
+        <p>本社团由高一 (11) 班沈子越发起，目前正在完善建设草案并推进共青团审批流程。我们希望立足新校区的新设备优势，通过“零成本、低门槛”的数字化工具，为全校师生提供实用、高效的校园服务。</p>
 
-        <h2>📢 籌備動態</h2>
+        <h2>📢 筹备动态</h2>
         <div class="card">
             <ul>
-                <li><strong>[2026/08/22]</strong> 完成社團建設初步構想，向指導老師提交交流建議書。</li>
-                <li><strong>[2026/08/25]</strong> 官方籌備網站上線，開啟線上展示與意見徵集。</li>
-                <li><strong>[下一步計畫]</strong> 撰寫正式申報材料，構建 M365 協同示範案例。</li>
+                <li><strong>[2026/08/22]</strong> 完成社团建设初步构想，向指导老师提交交流建议书。</li>
+                <li><strong>[2026/08/25]</strong> 官方筹备网站上线，开启线上展示与意见征集。</li>
+                <li><strong>[下一步计划]</strong> 撰写正式申报材料，构建 M365 协同示范案例。</li>
             </ul>
         </div>
 
-        <h2>🎯 社團核心定位</h2>
+        <h2>🎯 社团核心定位</h2>
         <ul>
-            <li>☁️ <strong>零成本引進資源</strong>：推廣微軟官方免費的 Microsoft 365 A1 教育版，不花學校一分錢。</li>
-            <li>🎒 <strong>解決教學痛點</strong>：推廣 OneDrive 雲端與 OneNote 電子課堂筆記本，告別隨身碟中毒與檔案遺失。</li>
-            <li>⚡ <strong>提效自動化</strong>：運用圖形化工具協助老師處理成績數據分析與請假流程自動化。</li>
+            <li>☁️ <strong>零成本引进资源</strong>：推广微软官方免费的 Microsoft 365 A1 教育版，不花学校一分钱。</li>
+            <li>🎒 <strong>解决教学痛点</strong>：推广 OneDrive 云端与 OneNote 电子课堂笔记本，告别 U 盘中毒与文件丢失。</li>
+            <li>⚡ <strong>提效自动化</strong>：运用图形化工具协助老师处理成绩数据分析与请假流程自动化。</li>
         </ul>
     </div>
 
-    <!-- 2. 欄目二：建設草案 -->
+    <!-- 2. 栏目二：建设草案 -->
     <div id="page-about" class="page-content">
-        <h1>📖 社團建設草案與規劃</h1>
-        <p>新校區配備了全新的 Windows 系統設備，我們希望藉此契機，由學生發起成立社團，協助學校探索更高效的數位化協同模式。</p>
+        <h1>📖 社团建设草案与规划</h1>
+        <p>新校区配备了全新的 Windows 系统设备，我们希望以此为契机，由学生发起成立社团，协助学校探索更高效的数字化协同模式。</p>
         
         <div class="card">
-            <h3>🌟 三大核心優勢</h3>
+            <h3>🌟 三大核心优势</h3>
             <ol>
-                <li><strong>完全零成本</strong>：申請微軟官方免費 M365 A1 教育版授權。</li>
-                <li><strong>無縫上手</strong>：全校 Windows 系統開機即可單點登入。</li>
-                <li><strong>門檻極低</strong>：採用拖曳式圖形化操作，無須寫代碼。</li>
+                <li><strong>完全零成本</strong>：申请微软官方免费 M365 A1 教育版授权。</li>
+                <li><strong>无缝上手</strong>：全校 Windows 系统开机即可单点登录。</li>
+                <li><strong>门槛极低</strong>：采用拖拽式图形化操作，无需写代码。</li>
             </ol>
         </div>
     </div>
 
-    <!-- 3. 欄目三：示範案例展示 -->
+    <!-- 3. 栏目三：示范案例展示 -->
     <div id="page-cases" class="page-content">
-        <h1>🚀 M365 數位化示範案例</h1>
-        <p>本社團將重點規劃並演示以下零成本數位化應用場景：</p>
+        <h1>🚀 M365 数字化示范案例</h1>
+        <p>本社团将重点规划并演示以下零成本数字化应用场景：</p>
         
         <div class="card">
-            <h3>📂 課堂講義與作業雲端化 (OneDrive + OneNote)</h3>
-            <p>老師可建立「聯動課堂筆記本」，即時同步課件與複習資料，學生在手機或電腦端隨時查看，擺脫傳統隨身碟易遺失、易中毒的問題。</p>
+            <h3>📂 课堂讲义与作业云端化 (OneDrive + OneNote)</h3>
+            <p>老师可建立“联动课堂笔记本”，实时同步课件与复习资料，学生在手机或电脑端随时查看，摆脱传统 U 盘易丢失、易中毒的问题。</p>
         </div>
 
         <div class="card">
-            <h3>🤖 自動化工作流 (Power Automate)</h3>
-            <p>運用圖形化拖曳工具，自動將線上蒐集的學生請假表單通知導師，或自動匯總課堂反饋數據，大幅節省人工重複操作。</p>
+            <h3>🤖 自动化工作流 (Power Automate)</h3>
+            <p>运用图形化拖拽工具，自动将线上收集的学生请假表单通知导师，或自动汇总课堂反馈数据，大幅节省人工重复操作。</p>
         </div>
     </div>
 
-    <!-- 4. 欄目四：推進路線圖 -->
+    <!-- 4. 栏目四：推进路线图 -->
     <div id="page-roadmap" class="page-content">
-        <h1>🛣️ 籌備與推進路線圖</h1>
+        <h1>🛣️ 筹备与推进路线图</h1>
         <div class="card">
             <ul>
-                <li><strong>階段一：概念構想與初探（已完成）</strong><br>確定社團定位，與指導老師展開初期交流與意向討論。</li>
-                <li><strong>階段二：線上展示與意見徵集（進行中）</strong><br>上線籌備主頁，開闢「意見與建議」側邊欄，蒐集師生實用需求。</li>
-                <li><strong>階段三：正式申報與示範構建</strong><br>撰寫正式申報材料，完成 1-2 個實用協同案例向團委與資訊中心展示。</li>
-                <li><strong>階段四：審批通過與面向全校招新</strong><br>通過共青團審批後，正式開展社團招新與數位化工作坊活動。</li>
+                <li><strong>阶段一：概念构想与初探（已完成）</strong><br>确定社团定位，与指导老师展开初期交流与意向讨论。</li>
+                <li><strong>阶段二：线上展示与意见征集（进行中）</strong><br>上线筹备主页，开辟“意见与建议”侧边栏，收集师生实用需求。</li>
+                <li><strong>阶段三：正式申报与示范构建</strong><br>撰写正式申报材料，完成 1-2 个实用协同案例向团委与信息中心展示。</li>
+                <li><strong>阶段四：审批通过与面向全校招新</strong><br>通过共青团审批后，正式开展社团招新与数字化工作坊活动。</li>
             </ul>
         </div>
     </div>
 
-    <!-- 5. 欄目五：數位工具庫 -->
+    <!-- 5. 栏目五：数字工具库 -->
     <div id="page-tools" class="page-content">
-        <h1>🛠️ 社團數位工具庫</h1>
-        <p>未來社團預計推廣與培訓的軟體及服務清單：</p>
+        <h1>🛠️ 社团数字工具库</h1>
+        <p>未来社团预计推广与培训的软件及服务清单：</p>
         
         <div class="card">
             <ul>
-                <li>☁️ <strong>Microsoft OneDrive</strong>：提供大容量免費雲端儲存，支援跨裝置同步。</li>
-                <li>📔 <strong>Microsoft OneNote</strong>：強大的無邊界數位筆記本，適合整理無紙化錯題本與課堂筆記。</li>
-                <li>📋 <strong>Microsoft Forms</strong>：用於快速發起課堂測驗、問卷調查與活動報名。</li>
-                <li>⚡ <strong>Power Automate</strong>：無程式碼自動化流程設計，幫助處理繁瑣重複的事務。</li>
+                <li>☁️ <strong>Microsoft OneDrive</strong>：提供大容量免费云端储存，支持跨设备同步。</li>
+                <li>📔 <strong>Microsoft OneNote</strong>：强大的无边界数字笔记本，适合整理无纸化错题本与课堂笔记。</li>
+                <li>📋 <strong>Microsoft Forms</strong>：用于快速发起课堂测验、问卷调查与活动报名。</li>
+                <li>⚡ <strong>Power Automate</strong>：无代码自动化流程设计，帮助处理繁琐重复的事务。</li>
             </ul>
         </div>
     </div>
@@ -233,98 +233,98 @@
     <!-- 深灰色背景遮罩 -->
     <div id="overlay" class="overlay" onclick="closeAllDrawers()"></div>
 
-    <!-- 左側滑出主選單 -->
+    <!-- 左侧滑出主菜单 -->
     <div id="leftDrawer" class="drawer-left">
         <div class="drawer-header">
-            <h3 style="margin:0;">選單導覽</h3>
+            <h3 style="margin:0;">菜单导航</h3>
             <button class="close-btn" onclick="closeAllDrawers()">&times;</button>
         </div>
         
         <ul class="menu-list">
-            <!-- 1. 籌備首頁 -->
-            <li class="menu-item" onclick="switchPage('page-home')">🏠 籌備首頁</li>
+            <!-- 1. 筹备首页 -->
+            <li class="menu-item" onclick="switchPage('page-home')">🏠 筹备首页</li>
 
-            <!-- 2. 探索中心 (包含 5 個子欄目) -->
+            <!-- 2. 探索中心 -->
             <li class="menu-item" onclick="toggleSubMenu()">
-                <span>📂 探索中心 (5個子欄目)</span>
+                <span>📂 探索中心 (5个子栏目)</span>
                 <span>▼</span>
             </li>
             
-            <!-- 子選項列表 -->
+            <!-- 子选项列表 -->
             <div id="subMenu" class="sub-menu">
-                <li class="menu-item" onclick="switchPage('page-about')">📖 建設草案</li>
-                <li class="menu-item" onclick="switchPage('page-cases')">🚀 示範案例展示</li>
-                <li class="menu-item" onclick="switchPage('page-roadmap')">🛣️ 推進路線圖</li>
-                <li class="menu-item" onclick="switchPage('page-tools')">🛠️ 數位工具庫</li>
-                <li class="menu-item" onclick="openRightDrawer('contactDrawer')" style="color:var(--primary-color);">📬 意見與建議 (右側抽屜)</li>
+                <li class="menu-item" onclick="switchPage('page-about')">📖 建设草案</li>
+                <li class="menu-item" onclick="switchPage('page-cases')">🚀 示范案例展示</li>
+                <li class="menu-item" onclick="switchPage('page-roadmap')">🛣️ 推进路线图</li>
+                <li class="menu-item" onclick="switchPage('page-tools')">🛠️ 数字工具库</li>
+                <li class="menu-item" onclick="openRightDrawer('contactDrawer')" style="color:var(--primary-color);">📬 意见与建议 (右侧抽屉)</li>
             </div>
         </ul>
     </div>
 
-    <!-- 6. 欄目六：右側滑出抽屜頁面（意見與建議） -->
+    <!-- 6. 栏目六：右侧滑出抽屉页面（意见与建议） -->
     <div id="contactDrawer" class="drawer-right">
         <div class="drawer-header">
-            <h3 style="margin:0;">📬 意見與建議</h3>
+            <h3 style="margin:0;">📬 意见与建议</h3>
             <button class="close-btn" onclick="closeRightDrawer('contactDrawer')">&times;</button>
         </div>
-        <p>社團目前處於草案審批與籌備階段，非常歡迎老師與同學們提出寶貴意見！</p>
+        <p>社团目前处于草案审批与筹备阶段，非常欢迎老师与同学们提出宝贵意见！</p>
         
-        <h4>👤 籌備發起人資訊</h4>
+        <h4>👤 筹备发起人信息</h4>
         <ul>
-            <li><strong>發起人</strong>：沈子越</li>
-            <li><strong>班級</strong>：高一 (11) 班</li>
+            <li><strong>发起人</strong>：沈子越</li>
+            <li><strong>班级</strong>：高一 (11) 班</li>
         </ul>
 
-        <h4>💬 意見徵集重點</h4>
+        <h4>💬 意见征集重点</h4>
         <ul>
-            <li>你希望社團優先探索哪些數位化工具？</li>
-            <li>老師在教學協同中有哪些具體痛點？</li>
-            <li>對社團未來的活動形式有何期待？</li>
+            <li>你希望社团优先探索哪些数字化工具？</li>
+            <li>老师在教学协同中有哪些具体痛点？</li>
+            <li>对社团未来的活动形式有何期待？</li>
         </ul>
 
-        <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【數字校園社團】意見反饋">
-            ✉️ 點擊發送郵件給發起人
+        <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【数字校园社团】意见反馈">
+            ✉️ 点击发送邮件给发起人
         </a>
     </div>
 
     <script>
-        // 開啟左側選單
         function openLeftDrawer() {
             closeAllDrawers();
             document.getElementById('leftDrawer').classList.add('open');
             document.getElementById('overlay').classList.add('active');
         }
 
-        // 切換子選單展開/收合
         function toggleSubMenu() {
             document.getElementById('subMenu').classList.toggle('active');
         }
 
-        // 切換主頁面內容（直接交換頁面）
         function switchPage(pageId) {
-            document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active'));
+            var pages = document.querySelectorAll('.page-content');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
             document.getElementById(pageId).classList.add('active');
             closeAllDrawers();
             window.scrollTo(0, 0);
         }
 
-        // 開啟右側滑出抽屜（意見與建議）
         function openRightDrawer(drawerId) {
             document.getElementById('leftDrawer').classList.remove('open');
             document.getElementById(drawerId).classList.add('open');
             document.getElementById('overlay').classList.add('active');
         }
 
-        // 僅關閉右側抽屜
         function closeRightDrawer(drawerId) {
             document.getElementById(drawerId).classList.remove('open');
             document.getElementById('overlay').classList.remove('active');
         }
 
-        // 關閉所有抽屜與灰色背景
         function closeAllDrawers() {
             document.getElementById('leftDrawer').classList.remove('open');
-            document.querySelectorAll('.drawer-right').forEach(d => d.classList.remove('open'));
+            var rightDrawers = document.querySelectorAll('.drawer-right');
+            for (var j = 0; j < rightDrawers.length; j++) {
+                rightDrawers[j].classList.remove('open');
+            }
             document.getElementById('overlay').classList.remove('active');
         }
     </script>
