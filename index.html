@@ -28,152 +28,107 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             padding: 20px 20px 80px 20px;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* 🚨 1. Google 风格顶部蓝蓝色进度条 */
+        /* 加载进度条与遮罩 */
         #progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background-color: var(--primary-color);
-            width: 0%;
-            z-index: 10001;
-            transition: width 0.3s ease-in-out, opacity 0.2s ease;
-            opacity: 0;
+            position: fixed; top: 0; left: 0; height: 3px;
+            background-color: var(--primary-color); width: 0%; z-index: 10001;
+            transition: width 0.3s ease-in-out, opacity 0.2s ease; opacity: 0;
             box-shadow: 0 0 8px var(--primary-color);
         }
-
-        /* 🚨 2. 全屏轻微暗色淡化遮罩 */
         #loading-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(1px); /* 轻微模糊 */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-            z-index: 10000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.2); backdrop-filter: blur(1px);
+            opacity: 0; visibility: hidden; transition: 0.2s; z-index: 10000;
         }
-        #loading-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        #loading-overlay.active { opacity: 1; visibility: visible; }
 
         /* 顶部 Header */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding-bottom: 15px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px;
         }
         .header-left { display: flex; align-items: center; }
 
         .btn-icon {
-            font-size: 1rem;
-            background: none;
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            padding: 6px 12px;
-            color: var(--text-color);
-            border-radius: 6px;
+            font-size: 1rem; background: none; border: 1px solid var(--border-color);
+            cursor: pointer; padding: 6px 12px; color: var(--text-color); border-radius: 6px;
         }
         .btn-icon:hover { background-color: var(--card-bg); }
 
+        /* Banner 顶部图文大卡片 */
+        .hero-banner {
+            width: 100%; height: 180px; border-radius: 8px;
+            background: linear-gradient(rgba(9, 105, 218, 0.8), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=80') center/cover;
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 25px; box-sizing: border-box; color: white; margin-bottom: 20px;
+        }
+        .hero-banner h1 { margin: 0; font-size: 1.6rem; }
+        .hero-banner p { margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95rem; }
+
         .badge {
-            background-color: #ddf4ff;
-            color: #0969da;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.85rem;
+            background-color: #ddf4ff; color: #0969da;
+            padding: 2px 8px; border-radius: 12px; font-size: 0.85rem;
         }
-        [data-theme="dark"] .badge {
-            background-color: #388bfd26;
-            color: #58a6ff;
-        }
+        [data-theme="dark"] .badge { background-color: #388bfd26; color: #58a6ff; }
 
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 15px;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 6px; padding: 18px; margin-bottom: 18px;
         }
 
-        /* 折叠面板 */
+        /* 部门与软件图标网格排版 */
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 10px;
+        }
+        .grid-card {
+            background: var(--bg-color); border: 1px solid var(--border-color);
+            padding: 15px; border-radius: 6px; text-align: center;
+        }
+        .grid-card img { width: 48px; height: 48px; margin-bottom: 8px; }
+
+        /* 表格样式 */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid var(--border-color); padding: 10px; text-align: left; font-size: 0.9rem; }
+        th { background-color: var(--card-bg); }
+
         details {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 10px 15px;
-            margin-bottom: 10px;
-            cursor: pointer;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 6px; padding: 10px 15px; margin-bottom: 10px; cursor: pointer;
         }
         summary { font-weight: bold; }
 
         .page-content { display: none; }
         .page-content.active { display: block; }
 
-        /* Google 风格 Footer */
         footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
         }
 
         .lang-select {
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            font-size: 0.9rem;
-            outline: none;
-            cursor: pointer;
+            padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color);
+            background-color: var(--card-bg); color: var(--text-color); font-size: 0.9rem; outline: none; cursor: pointer;
         }
 
-        /* 回到顶部按钮 */
         .back-to-top {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            z-index: 900;
-            transition: transform 0.2s, background-color 0.2s;
+            position: fixed; bottom: 25px; right: 25px; width: 48px; height: 48px;
+            border-radius: 50%; background-color: var(--card-bg); color: var(--text-color);
+            border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            font-size: 1.2rem; z-index: 900; transition: transform 0.2s;
         }
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            background-color: var(--primary-color);
-            color: #ffffff;
-        }
+        .back-to-top:hover { transform: translateY(-3px); background-color: var(--primary-color); color: white; }
 
-        /* 侧边菜单抽屉 */
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden;
-            transition: 0.3s; z-index: 998;
+            background-color: rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 998;
         }
         .overlay.active { opacity: 1; visibility: visible; }
 
@@ -192,9 +147,7 @@
         .drawer-right.open { right: 0; }
 
         .menu-list { list-style: none; padding: 0; }
-        .menu-item {
-            padding: 12px 10px; border-bottom: 1px solid var(--border-color); cursor: pointer; font-weight: 600;
-        }
+        .menu-item { padding: 12px 10px; border-bottom: 1px solid var(--border-color); cursor: pointer; font-weight: 600; }
         .menu-item:hover { color: var(--primary-color); }
 
         .btn-mail {
@@ -205,11 +158,10 @@
 </head>
 <body>
 
-    <!-- 🚨 进度条与加载遮罩 -->
     <div id="progress-bar"></div>
     <div id="loading-overlay"></div>
 
-    <!-- 顶部栏 -->
+    <!-- 顶部导航 -->
     <header>
         <div class="header-left">
             <button class="btn-icon" onclick="openLeftDrawer()">☰</button>
@@ -223,50 +175,107 @@
         </div>
     </header>
 
-    <!-- 首页 -->
+    <!-- 首页 Banner 主图 -->
+    <div class="hero-banner">
+        <h1 data-zh="广州113中学 - 数字校园社团" data-zht="廣州113中學 - 數位校園社團" data-en="GZ113 Digital Campus Club">广州113中学 - 数字校园社团</h1>
+        <p data-zh="探索低门槛协同工具，助力师生高效学习与办公" data-zht="探索低門檻協同工具，助力師生高效學習與辦公" data-en="Empowering teachers & students with zero-cost digital tools">探索低门槛协同工具，助力师生高效学习与办公</p>
+    </div>
+
+    <!-- 首页栏目 -->
     <div id="page-home" class="page-content active">
-        <h1>💡 <span data-zh="数字校园与信息应用社团" data-zht="數位校園與資訊應用社團" data-en="Digital Campus Club">数字校园与信息应用社团</span> 
-            <span class="badge" data-zh="筹备中" data-zht="籌備中" data-en="Preparing">筹备中</span>
-        </h1>
-        <p data-zh="欢迎来到广州113中学数字校园社团官方筹备主页！本社团由高一(11)班沈子越发起，立足新校区设备优势，提供零成本、低门槛的数字化协同服务。" 
-           data-zht="歡迎來到廣州113中學數位校園社團官方籌備主頁！本社團由高一(11)班沈子越發起，立足新校區設備優勢，提供零成本、低門檻的數位化協同服務。"
-           data-en="Welcome to Guangzhou 113 Middle School Digital Campus Club! Founded by Shen Ziyue (Class 11, Grade 10), we aim to build zero-cost digital solutions.">
-           欢迎来到广州113中学数字校园社团官方筹备主页！本社团由高一(11)班沈子越发起，立足新校区设备优势，提供零成本、低门槛的数字化协同服务。
+        <h2>💡 <span data-zh="社团定位与愿景" data-zht="社團定位與願景" data-en="Mission & Vision">社团定位与愿景</span> <span class="badge" data-zh="筹备中" data-zht="籌備中" data-en="Preparing">筹备中</span></h2>
+        <p data-zh="本社团由高一(11)班沈子越发起，立足新校区设备优势，通过微软 M365 A1 教育版等零成本工具，为全校师生打造高效率的数字校园体验。" 
+           data-zht="本社團由高一(11)班沈子越發起，立足新校區設備優勢，透過微軟 M365 A1 教育版等零成本工具，為全校師生打造高效率的數位校園體驗。"
+           data-en="Founded by Shen Ziyue, we leverage free tools like M365 A1 Education to improve campus workflow productivity.">
+           本社团由高一(11)班沈子越发起，立足新校区设备优势，通过微软 M365 A1 教育版等零成本工具，为全校师生打造高效率的数字校园体验。
         </p>
 
-        <h2 data-zh="📢 筹备动态" data-zht="📢 籌備動態" data-en="📢 News">📢 筹备动态</h2>
+        <!-- 🖼️ 核心数字工具矩阵 (带 Icon 图片) -->
+        <h2 data-zh="🛠️ 社团核心数字工具矩阵" data-zht="🛠️ 社團核心數位工具矩陣" data-en="🛠️ Digital Tool Matrix">🛠️ 社团核心数字工具矩阵</h2>
+        <div class="grid-container">
+            <div class="grid-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="OneDrive">
+                <h4>OneDrive 云盘</h4>
+                <p style="font-size:0.8rem; color:#666;">大容量免费存储，课件云端同步不丢失</p>
+            </div>
+            <div class="grid-card">
+                <img src="https://img.icons8.com/color/96/onenote.png" alt="OneNote">
+                <h4>OneNote 笔记本</h4>
+                <p style="font-size:0.8rem; color:#666;">班级共享笔记、无纸化错题本整理</p>
+            </div>
+            <div class="grid-card">
+                <img src="https://img.icons8.com/color/96/microsoft-forms.png" alt="Forms">
+                <h4>Forms 智能表单</h4>
+                <p style="font-size:0.8rem; color:#666;">秒级发起问卷收集、课堂知识点测验</p>
+            </div>
+        </div>
+
+        <h2 data-zh="📢 最新筹备动态" data-zht="📢 最新籌備動態" data-en="📢 News">📢 最新筹备动态</h2>
         <div class="card">
             <ul>
-                <li><strong>[2026/08/22]</strong> <span data-zh="完成社团初步构想，向指导老师提交交流建议书。" data-zht="完成社團初步構想，向指導老師提交交流建議書。" data-en="Drafted proposal & submitted to advisor.">完成社团初步构想，向指导老师提交交流建议书。</span></li>
-                <li><strong>[2026/08/25]</strong> <span data-zh="官方筹备网站上线，支持多语言与 Google 风格动画。" data-zht="官方籌備網站上線，支援多語言與 Google 風格動畫。" data-en="Official website launched with i18n & Google style animation.">官方筹备网站上线，支持多语言与 Google 风格动画。</span></li>
+                <li><strong>[2026/08/22]</strong> 完成社团初步构想，向指导老师提交交流建议书。</li>
+                <li><strong>[2026/08/25]</strong> 官方筹备网站升级，支持多语言、多主题与矢量视觉矩阵。</li>
             </ul>
         </div>
 
         <h2 data-zh="❓ 常见问题 (FAQ)" data-zht="❓ 常見問題 (FAQ)" data-en="❓ FAQ">❓ 常见问题 (FAQ)</h2>
         <details>
             <summary data-zh="加入社团需要有编程基础吗？" data-zht="加入社團需要有程式設計基礎嗎？" data-en="Do I need coding skills?">加入社团需要有编程基础吗？</summary>
-            <p data-zh="不需要！本社团重点推广无代码/低代码工具（如 OneNote、Forms、Power Automate），拖拽式图形操作，零基础轻松上手。" 
-               data-zht="不需要！本社團重點推廣無程式碼/低程式碼工具（如 OneNote、Forms、Power Automate），拖曳式圖形操作，零基礎輕鬆上手。" 
-               data-en="No! We focus on no-code/low-code tools like OneNote, Forms, and Power Automate. Anyone can learn easily.">不需要！本社团重点推广无代码/低代码工具（如 OneNote、Forms、Power Automate），拖拽式图形操作，零基础轻松上手。</p>
-        </details>
-        <details>
-            <summary data-zh="社团会占用大量学习时间吗？" data-zht="社團會佔用大量學習時間嗎？" data-en="Will it take too much study time?">社团会占用大量学习时间吗？</summary>
-            <p data-zh="不会。社团活动主要以轻量化工作坊为主，目标是帮大家提高日常学习与事务处理效率，反而能节省时间。" 
-               data-zht="不會。社團活動主要以輕量化工作坊為主，目標是幫大家提高日常學習與事務處理效率，反而能節省時間。" 
-               data-en="No. We hold lightweight workshops designed to save your time by boosting efficiency.">不会。社团活动主要以轻量化工作坊为主，目标是帮大家提高日常学习与事务处理效率，反而能节省时间。</p>
+            <p data-zh="不需要！本社团重点推广拖拽式无代码工具，零基础轻松上手。" data-zht="不需要！本社團重點推廣拖曳式無程式碼工具，零基礎輕鬆上手。" data-en="No! We focus on drag-and-drop no-code tools. Anyone can learn easily.">不需要！本社团重点推广拖拽式无代码工具，零基础轻松上手。</p>
         </details>
     </div>
 
-    <!-- 建设草案 -->
+    <!-- 建设草案与部门架构 -->
     <div id="page-about" class="page-content">
-        <h1 data-zh="📖 社团建设草案" data-zht="📖 社團建設草案" data-en="📖 Club Proposal">📖 社团建设草案</h1>
+        <h1 data-zh="📖 社团建设草案与部门架构" data-zht="📖 社團建設草案與部門架構" data-en="📖 Proposal & Structure">📖 社团建设草案与部门架构</h1>
+        
         <div class="card">
-            <h3 data-zh="🌟 三大核心优势" data-zht="🌟 三大核心優勢" data-en="🌟 Key Advantages">🌟 三大核心优势</h3>
-            <ol>
-                <li data-zh="完全零成本：申请微软官方免费 M365 A1 教育版授权。" data-zht="完全零成本：申請微軟官方免費 M365 A1 教育版授權。" data-en="100% Free: Apply for free M365 A1 Education license.">完全零成本：申请微软官方免费 M365 A1 教育版授权。</li>
-                <li data-zh="无缝上手：全校 Windows 设备开机即可单点登录。" data-zht="無縫上手：全校 Windows 設備開機即可單點登入。" data-en="Seamless Login: Single sign-on on all school Windows PCs.">无缝上手：全校 Windows 设备开机即可单点登录。</li>
-                <li data-zh="门槛极低：图形化拖拽，无需编写代码。" data-zht="門檻極低：圖形化拖曳，無需編寫程式碼。" data-en="Low Threshold: Drag-and-drop workflow, no coding.">门槛极低：图形化拖拽，无需编写代码。</li>
-            </ol>
+            <h3>🌟 社团组织架构划分</h3>
+            <div class="grid-container">
+                <div class="grid-card">
+                    <h4>💻 技术应用组</h4>
+                    <p style="font-size:0.8rem;">负责搭建与测试自动化工作流（Forms + Power Automate）案例。</p>
+                </div>
+                <div class="grid-card">
+                    <h4>📚 内容宣讲组</h4>
+                    <p style="font-size:0.8rem;">撰写无纸化笔记技巧、软件使用教程，开展工作坊主讲。</p>
+                </div>
+                <div class="grid-card">
+                    <h4>🎨 视觉设计组</h4>
+                    <p style="font-size:0.8rem;">负责活动海报设计、演示 PPT 制作与网站界面优化。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📅 学期规划日程表 -->
+        <div class="card">
+            <h3>📅 首学期工作坊规划预演</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>周次</th>
+                        <th>主题</th>
+                        <th>主要内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>第 2 周</td>
+                        <td>云端无缝协同</td>
+                        <td>OneDrive 云盘设置与班级共享文件夹建立</td>
+                    </tr>
+                    <tr>
+                        <td>第 4 周</td>
+                        <td>高效无纸化学习</td>
+                        <td>OneNote 错题本搭建与电子讲义实时批注</td>
+                    </tr>
+                    <tr>
+                        <td>第 6 周</td>
+                        <td>零代码自动化体验</td>
+                        <td>Forms 自动收集表单与数据图表一键导出</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -294,7 +303,6 @@
         </div>
     </footer>
 
-    <!-- 回到顶部按钮 -->
     <button class="back-to-top" onclick="scrollToTop()" title="回到顶部">▲</button>
 
     <!-- 侧边菜单 -->
@@ -303,7 +311,7 @@
         <h3>Menu</h3>
         <ul class="menu-list">
             <li class="menu-item" onclick="switchPage('page-home')" data-zh="🏠 筹备首页" data-zht="🏠 籌備首頁" data-en="🏠 Home">🏠 筹备首页</li>
-            <li class="menu-item" onclick="switchPage('page-about')" data-zh="📖 建设草案" data-zht="📖 建設草案" data-en="📖 Proposal">📖 建设草案</li>
+            <li class="menu-item" onclick="switchPage('page-about')" data-zh="📖 建设草案与架构" data-zht="📖 建設草案與架構" data-en="📖 Proposal">📖 建设草案与架构</li>
             <li class="menu-item" onclick="switchPage('page-form')" data-zh="📋 需求调查与预报名" data-zht="📋 需求調查與預報名" data-en="📋 Survey">📋 需求调查与预报名</li>
             <li class="menu-item" onclick="openRightDrawer('contactDrawer')" data-zh="📬 意见反馈" data-zht="📬 意見反饋" data-en="📬 Contact">📬 意见反馈</li>
         </ul>
@@ -317,21 +325,16 @@
     </div>
 
     <script>
-        // 🚨 带 Google 同款动画效果的语言切换
         function changeLanguageWithAnimation(lang) {
             const progressBar = document.getElementById('progress-bar');
             const loadingOverlay = document.getElementById('loading-overlay');
 
-            // 1. 触发暗色遮罩 & 显示进度条
             loadingOverlay.classList.add('active');
             progressBar.style.opacity = '1';
-            progressBar.style.width = '40%'; // 进度条拉到 40%
+            progressBar.style.width = '40%';
 
-            // 2. 模拟 150ms 延迟（文字替换）
             setTimeout(() => {
                 progressBar.style.width = '80%';
-                
-                // 替换文字内容
                 const elements = document.querySelectorAll('[data-zh]');
                 elements.forEach(el => {
                     const targetText = el.getAttribute(`data-${lang}`);
@@ -339,10 +342,8 @@
                 });
             }, 150);
 
-            // 3. 完成加载，拉满 100% 并淡出
             setTimeout(() => {
                 progressBar.style.width = '100%';
-                
                 setTimeout(() => {
                     loadingOverlay.classList.remove('active');
                     progressBar.style.opacity = '0';
@@ -351,9 +352,7 @@
             }, 300);
         }
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
