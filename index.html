@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>广州113中学 - 数字校园与信息应用社团</title>
+    <title>广州市113中学 - 数字校园与信息应用社团</title>
     <style>
         :root {
             --primary-color: #0969da;
@@ -28,13 +28,13 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
-            max-width: 850px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px 20px 80px 20px;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* 加载进度条与遮罩 */
+        /* 动画进度条与遮罩 */
         #progress-bar {
             position: fixed; top: 0; left: 0; height: 3px;
             background-color: var(--primary-color); width: 0%; z-index: 10001;
@@ -61,16 +61,18 @@
         }
         .btn-icon:hover { background-color: var(--card-bg); }
 
-        /* Banner 顶部图文大卡片 */
-        .hero-banner {
-            width: 100%; height: 180px; border-radius: 8px;
-            background: linear-gradient(rgba(9, 105, 218, 0.8), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=80') center/cover;
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 25px; box-sizing: border-box; color: white; margin-bottom: 20px;
+        /* 纯色科技感 Banner */
+        .hero-banner-pure {
+            width: 100%;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            padding: 25px 20px;
+            box-sizing: border-box;
+            color: #ffffff;
+            margin-bottom: 20px;
         }
-        .hero-banner h1 { margin: 0; font-size: 1.6rem; }
-        .hero-banner p { margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95rem; }
+        .hero-banner-pure h1 { margin: 0; font-size: 1.5rem; }
+        .hero-banner-pure p { margin: 5px 0 0 0; opacity: 0.9; font-size: 0.95rem; }
 
         .badge {
             background-color: #ddf4ff; color: #0969da;
@@ -83,20 +85,20 @@
             border-radius: 6px; padding: 18px; margin-bottom: 18px;
         }
 
-        /* 部门与软件图标网格排版 */
+        /* 外部工具链接网格 */
         .grid-container {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 10px;
         }
         .grid-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
-            padding: 15px; border-radius: 6px; text-align: center;
+            padding: 15px; border-radius: 6px; text-decoration: none; color: var(--text-color);
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: border-color 0.2s;
         }
-        .grid-card img { width: 48px; height: 48px; margin-bottom: 8px; }
-
-        /* 表格样式 */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid var(--border-color); padding: 10px; text-align: left; font-size: 0.9rem; }
-        th { background-color: var(--card-bg); }
+        .grid-card:hover { border-color: var(--primary-color); }
+        .grid-card h4 { margin: 0 0 5px 0; color: var(--primary-color); }
+        .grid-card p { margin: 0; font-size: 0.85rem; color: #666; }
+        .link-text { font-size: 0.8rem; font-weight: bold; margin-top: 10px; display: inline-block; color: var(--primary-color); }
 
         details {
             background: var(--card-bg); border: 1px solid var(--border-color);
@@ -161,7 +163,6 @@
     <div id="progress-bar"></div>
     <div id="loading-overlay"></div>
 
-    <!-- 顶部导航 -->
     <header>
         <div class="header-left">
             <button class="btn-icon" onclick="openLeftDrawer()">☰</button>
@@ -175,124 +176,96 @@
         </div>
     </header>
 
-    <!-- 首页 Banner 主图 -->
-    <div class="hero-banner">
-        <h1 data-zh="广州113中学 - 数字校园社团" data-zht="廣州113中學 - 數位校園社團" data-en="GZ113 Digital Campus Club">广州113中学 - 数字校园社团</h1>
-        <p data-zh="探索低门槛协同工具，助力师生高效学习与办公" data-zht="探索低門檻協同工具，助力師生高效學習與辦公" data-en="Empowering teachers & students with zero-cost digital tools">探索低门槛协同工具，助力师生高效学习与办公</p>
+    <!-- 纯色科技 Banner (替代第三方图片) -->
+    <div class="hero-banner-pure">
+        <h1 data-zh="广州市第113中学 · 数字校园社团" data-zht="廣州市第113中學 · 數位校園社團" data-en="GZ113 Digital Campus Club">广州市第113中学 · 数字校园社团</h1>
+        <p data-zh="探索零成本低门槛的数字化工具，服务日常学习与校园协同" data-zht="探索零成本低門檻的數位化工具，服務日常學習與校園協同" data-en="Exploring zero-cost digital tools for campus productivity">探索零成本低门槛的数字化协同工具，服务日常学习与校园协同</p>
     </div>
 
-    <!-- 首页栏目 -->
+    <!-- 首页主内容 -->
     <div id="page-home" class="page-content active">
-        <h2>💡 <span data-zh="社团定位与愿景" data-zht="社團定位與願景" data-en="Mission & Vision">社团定位与愿景</span> <span class="badge" data-zh="筹备中" data-zht="籌備中" data-en="Preparing">筹备中</span></h2>
-        <p data-zh="本社团由高一(11)班沈子越发起，立足新校区设备优势，通过微软 M365 A1 教育版等零成本工具，为全校师生打造高效率的数字校园体验。" 
-           data-zht="本社團由高一(11)班沈子越發起，立足新校區設備優勢，透過微軟 M365 A1 教育版等零成本工具，為全校師生打造高效率的數位校園體驗。"
-           data-en="Founded by Shen Ziyue, we leverage free tools like M365 A1 Education to improve campus workflow productivity.">
-           本社团由高一(11)班沈子越发起，立足新校区设备优势，通过微软 M365 A1 教育版等零成本工具，为全校师生打造高效率的数字校园体验。
+        <h2>💡 <span data-zh="社团发起理念" data-zht="社團發起理念" data-en="Mission">社团发起理念</span> <span class="badge" data-zh="筹备中" data-zht="籌備中" data-en="Preparing">筹备中</span></h2>
+        <p data-zh="本社团由高一(11)班沈子越发起，立足新校区硬件条件，旨在帮助全校师生利用微软教育版等工具提升无纸化学习与协作效率。" 
+           data-zht="本社團由高一(11)班沈子越發起，立足新校區硬體條件，旨在幫助全校師生利用微軟教育版等工具提升無紙化學習與協作效率。"
+           data-en="Founded by Shen Ziyue, aiming to leverage educational digital tools to improve productivity for students and teachers.">
+           本社团由高一(11)班沈子越发起，立足新校区硬件条件，旨在帮助全校师生利用微软教育版等工具提升无纸化学习与协作效率。
         </p>
 
-        <!-- 🖼️ 核心数字工具矩阵 (带 Icon 图片) -->
-        <h2 data-zh="🛠️ 社团核心数字工具矩阵" data-zht="🛠️ 社團核心數位工具矩陣" data-en="🛠️ Digital Tool Matrix">🛠️ 社团核心数字工具矩阵</h2>
+        <!-- 🔗 官方工具跳转链接 (带外部链接跳转) -->
+        <h2 data-zh="🔗 拟推广核心应用与官方直达" data-zht="🔗 擬推廣核心應用與官方直達" data-en="🔗 Featured Tools & Direct Links">🔗 拟推广核心应用与官方直达</h2>
         <div class="grid-container">
-            <div class="grid-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="OneDrive">
-                <h4>OneDrive 云盘</h4>
-                <p style="font-size:0.8rem; color:#666;">大容量免费存储，课件云端同步不丢失</p>
-            </div>
-            <div class="grid-card">
-                <img src="https://img.icons8.com/color/96/onenote.png" alt="OneNote">
-                <h4>OneNote 笔记本</h4>
-                <p style="font-size:0.8rem; color:#666;">班级共享笔记、无纸化错题本整理</p>
-            </div>
-            <div class="grid-card">
-                <img src="https://img.icons8.com/color/96/microsoft-forms.png" alt="Forms">
-                <h4>Forms 智能表单</h4>
-                <p style="font-size:0.8rem; color:#666;">秒级发起问卷收集、课堂知识点测验</p>
-            </div>
+            <a class="grid-card" href="https://www.microsoft.com/zh-cn/microsoft-365/onedrive/online-cloud-storage" target="_blank">
+                <div>
+                    <h4>☁️ OneDrive 云端存储</h4>
+                    <p>多端实时同步，摆脱传统 U 盘文件丢失或病毒风险。</p>
+                </div>
+                <span class="link-text">访问微软官网 ↗</span>
+            </a>
+            <a class="grid-card" href="https://www.microsoft.com/zh-cn/microsoft-365/onenote/digital-note-taking-app" target="_blank">
+                <div>
+                    <h4>📔 OneNote 协同笔记</h4>
+                    <p>支持无边界画布，适合整理电子讲义与无纸化错题本。</p>
+                </div>
+                <span class="link-text">访问微软官网 ↗</span>
+            </a>
+            <a class="grid-card" href="https://www.microsoft.com/zh-cn/microsoft-365/online-surveys-polls-quizzes" target="_blank">
+                <div>
+                    <h4>📋 Forms 智能表单</h4>
+                    <p>快速创建调查问卷与测验，实时自动生成可视化图表。</p>
+                </div>
+                <span class="link-text">访问微软官网 ↗</span>
+            </a>
         </div>
 
-        <h2 data-zh="📢 最新筹备动态" data-zht="📢 最新籌備動態" data-en="📢 News">📢 最新筹备动态</h2>
+        <h2 data-zh="📢 筹备动态" data-zht="📢 籌備動態" data-en="📢 News">📢 筹备动态</h2>
         <div class="card">
             <ul>
-                <li><strong>[2026/08/22]</strong> 完成社团初步构想，向指导老师提交交流建议书。</li>
-                <li><strong>[2026/08/25]</strong> 官方筹备网站升级，支持多语言、多主题与矢量视觉矩阵。</li>
+                <li><strong>[2026/08/22]</strong> 完成初步建设建议书并向指导老师汇报。</li>
+                <li><strong>[2026/08/25]</strong> GitHub Pages 官方展示站点上线。</li>
             </ul>
         </div>
 
-        <h2 data-zh="❓ 常见问题 (FAQ)" data-zht="❓ 常見問題 (FAQ)" data-en="❓ FAQ">❓ 常见问题 (FAQ)</h2>
+        <h2 data-zh="❓ 常见问题" data-zht="❓ 常見問題" data-en="❓ FAQ">❓ 常见问题</h2>
         <details>
-            <summary data-zh="加入社团需要有编程基础吗？" data-zht="加入社團需要有程式設計基礎嗎？" data-en="Do I need coding skills?">加入社团需要有编程基础吗？</summary>
-            <p data-zh="不需要！本社团重点推广拖拽式无代码工具，零基础轻松上手。" data-zht="不需要！本社團重點推廣拖曳式無程式碼工具，零基礎輕鬆上手。" data-en="No! We focus on drag-and-drop no-code tools. Anyone can learn easily.">不需要！本社团重点推广拖拽式无代码工具，零基础轻松上手。</p>
+            <summary data-zh="零编程基础可以参与吗？" data-zht="零程式設計基礎可以參與嗎？" data-en="Do I need coding skills?">零编程基础可以参与吗？</summary>
+            <p data-zh="完全可以。我们推广的工具全都是图形化操作，上手门槛极低。" data-zht="完全可以。我們推廣的工具全都是圖形化操作，上手門檻極低。" data-en="Yes! All promoted tools are low-barrier, graphic-based apps.">完全可以。我们推广的工具全都是图形化操作，上手门槛极低。</p>
         </details>
+
+        <!-- 🏫 广州市第一一三中学学校介绍 (最下方) -->
+        <h2 data-zh="🏫 关于广州市第一一三中学" data-zht="🏫 關於廣州市第一一三中學" data-en="🏫 About Guangzhou 113 Middle School">🏫 关于广州市第一一三中学</h2>
+        <div class="card" style="font-size: 0.9rem; color: #555; line-height: 1.7;">
+            <p><strong>广州市第一一三中学</strong>创办于 1978 年，坐落于广州市天河区核心地段，是一所办学历史悠久、实力突出的公办完全中学。学校先后被评为<strong>广东省一级学校</strong>及<strong>广东省普通高中教学水平优秀学校</strong>。</p>
+            <p>学校教学硬件设施先进，拥有现代化的教育教学功能室。本社团将立足学校完善的硬件条件与校园网络设施，协助探索更便捷、高效的数字化学习与协同方式。</p>
+        </div>
     </div>
 
-    <!-- 建设草案与部门架构 -->
+    <!-- 建设草案 -->
     <div id="page-about" class="page-content">
-        <h1 data-zh="📖 社团建设草案与部门架构" data-zht="📖 社團建設草案與部門架構" data-en="📖 Proposal & Structure">📖 社团建设草案与部门架构</h1>
-        
+        <h1 data-zh="📖 社团建设草案" data-zht="📖 社團建設草案" data-en="📖 Club Proposal">📖 社团建设草案</h1>
         <div class="card">
-            <h3>🌟 社团组织架构划分</h3>
-            <div class="grid-container">
-                <div class="grid-card">
-                    <h4>💻 技术应用组</h4>
-                    <p style="font-size:0.8rem;">负责搭建与测试自动化工作流（Forms + Power Automate）案例。</p>
-                </div>
-                <div class="grid-card">
-                    <h4>📚 内容宣讲组</h4>
-                    <p style="font-size:0.8rem;">撰写无纸化笔记技巧、软件使用教程，开展工作坊主讲。</p>
-                </div>
-                <div class="grid-card">
-                    <h4>🎨 视觉设计组</h4>
-                    <p style="font-size:0.8rem;">负责活动海报设计、演示 PPT 制作与网站界面优化。</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 📅 学期规划日程表 -->
-        <div class="card">
-            <h3>📅 首学期工作坊规划预演</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>周次</th>
-                        <th>主题</th>
-                        <th>主要内容</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>第 2 周</td>
-                        <td>云端无缝协同</td>
-                        <td>OneDrive 云盘设置与班级共享文件夹建立</td>
-                    </tr>
-                    <tr>
-                        <td>第 4 周</td>
-                        <td>高效无纸化学习</td>
-                        <td>OneNote 错题本搭建与电子讲义实时批注</td>
-                    </tr>
-                    <tr>
-                        <td>第 6 周</td>
-                        <td>零代码自动化体验</td>
-                        <td>Forms 自动收集表单与数据图表一键导出</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3>🌟 社团基本规划</h3>
+            <ul>
+                <li><strong>零成本引进</strong>：协助对接微软 A1 免费教育版资源，不增加学校财政负担。</li>
+                <li><strong>解决应用痛点</strong>：减少课件传输、文件保存、活动报名中的重复体力劳动。</li>
+                <li><strong>工作坊交流</strong>：以定期小规模分享的形式，帮助同学和老师掌握实用工具。</li>
+            </ul>
         </div>
     </div>
 
     <!-- 预报名 -->
     <div id="page-form" class="page-content">
-        <h1 data-zh="📋 需求调查与预报名" data-zht="📋 需求調查與預報名" data-en="📋 Survey">📋 需求调查与预报名</h1>
+        <h1 data-zh="📋 意见征集与预报名" data-zht="📋 意見徵集與預報名" data-en="📋 Feedback & Join">📋 意见征集与预报名</h1>
         <div class="card" style="text-align: center; padding: 30px;">
-            <p data-zh="💡 欢迎联系我们提交建议或预报名：" data-zht="💡 歡迎聯繫我們提交建議或預報名：" data-en="💡 Contact us for feedback or pre-registration:">💡 欢迎联系我们提交建议或预报名：</p>
+            <p data-zh="💡 欢迎通过邮件提出建议或表达加入意向：" data-zht="💡 歡迎透過郵件提出建議或表達加入意向：" data-en="💡 Contact us via email:">💡 欢迎通过邮件提出建议或表达加入意向：</p>
             <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【预报名】申请加入数字校园社团" 
-               data-zh="✉️ 点击发送邮件报名" data-zht="✉️ 點擊發送郵件報名" data-en="✉️ Pre-register via Email">✉️ 点击发送邮件报名</a>
+               data-zh="✉️ 发送邮件给发起人" data-zht="✉️ 發送郵件給發起人" data-en="✉️ Send Email to Founder">✉️ 发送邮件给发起人</a>
         </div>
     </div>
 
     <!-- Footer 底部栏 -->
     <footer>
         <div>
-            <span style="font-size:0.85rem; color:#888;">© 2026 广州113中学 数字校园社团</span>
+            <span style="font-size:0.85rem; color:#888;">© 2026 广州市第113中学 数字校园社团</span>
         </div>
         <div>
             <select class="lang-select" onchange="changeLanguageWithAnimation(this.value)">
@@ -305,23 +278,14 @@
 
     <button class="back-to-top" onclick="scrollToTop()" title="回到顶部">▲</button>
 
-    <!-- 侧边菜单 -->
     <div id="overlay" class="overlay" onclick="closeAllDrawers()"></div>
     <div id="leftDrawer" class="drawer-left">
         <h3>Menu</h3>
         <ul class="menu-list">
             <li class="menu-item" onclick="switchPage('page-home')" data-zh="🏠 筹备首页" data-zht="🏠 籌備首頁" data-en="🏠 Home">🏠 筹备首页</li>
-            <li class="menu-item" onclick="switchPage('page-about')" data-zh="📖 建设草案与架构" data-zht="📖 建設草案與架構" data-en="📖 Proposal">📖 建设草案与架构</li>
-            <li class="menu-item" onclick="switchPage('page-form')" data-zh="📋 需求调查与预报名" data-zht="📋 需求調查與預報名" data-en="📋 Survey">📋 需求调查与预报名</li>
-            <li class="menu-item" onclick="openRightDrawer('contactDrawer')" data-zh="📬 意见反馈" data-zht="📬 意見反饋" data-en="📬 Contact">📬 意见反馈</li>
+            <li class="menu-item" onclick="switchPage('page-about')" data-zh="📖 建设草案" data-zht="📖 建設草案" data-en="📖 Proposal">📖 建设草案</li>
+            <li class="menu-item" onclick="switchPage('page-form')" data-zh="📋 意见与预报名" data-zht="📋 意見與預報名" data-en="📋 Contact">📋 意见与预报名</li>
         </ul>
-    </div>
-
-    <div id="contactDrawer" class="drawer-right">
-        <h3 data-zh="📬 意见与建议" data-zht="📬 意見與建議" data-en="📬 Feedback">📬 意见与建议</h3>
-        <p data-zh="发起人：高一 (11) 班 沈子越" data-zht="發起人：高一 (11) 班 沈子越" data-en="Founder: Shen Ziyue (Grade 10, Class 11)">发起人：高一 (11) 班 沈子越</p>
-        <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【数字校园社团】意见反馈" 
-           data-zh="✉️ 发送邮件" data-zht="✉️ 發送郵件" data-en="✉️ Send Email">✉️ 发送邮件</a>
     </div>
 
     <script>
@@ -376,15 +340,8 @@
             window.scrollTo(0, 0);
         }
 
-        function openRightDrawer(drawerId) {
-            closeAllDrawers();
-            document.getElementById(drawerId).classList.add('open');
-            document.getElementById('overlay').classList.add('active');
-        }
-
         function closeAllDrawers() {
             document.getElementById('leftDrawer').classList.remove('open');
-            document.querySelectorAll('.drawer-right').forEach(d => d.classList.remove('open'));
             document.getElementById('overlay').classList.remove('active');
         }
     </script>
