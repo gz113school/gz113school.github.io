@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>廣州113中學 - 數字校園與資訊應用社團（籌備中）</title>
+    <style>
+        :root {
+            --primary-color: #0969da;
+            --bg-color: #f6f8fa;
+            --text-color: #24292f;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        nav {
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e1e4e8;
+            margin-bottom: 20px;
+        }
+        nav a, nav button {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 15px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0;
+        }
+        .badge {
+            background-color: #ddf4ff;
+            color: #0969da;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        .card {
+            background: var(--bg-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        /* 1. 半透明深灰色背景遮罩 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 深灰色遮罩 */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 998;
+        }
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 2. 右側滑出抽屜 */
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -85%; /* 預設藏在畫面右側外部 */
+            width: 80%; /* 佔據螢幕 80% 寬度，露出左側背景 */
+            max-width: 400px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.15);
+            transition: right 0.3s ease-in-out;
+            z-index: 999;
+            padding: 25px 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .drawer.open {
+            right: 0; /* 滑入畫面 */
+        }
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .close-btn {
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #57606a;
+        }
+        .btn-mail {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 頂部導覽列 -->
+    <nav>
+        <a href="#">🏠 籌備首頁</a>
+        <button onclick="openDrawer()">📬 意見反饋與聯繫</button>
+    </nav>
+
+    <!-- 主頁面內容 -->
+    <h1>💡 數字校園與資訊應用社團 <span class="badge">籌備中</span></h1>
+    <p>歡迎來到 <strong>廣州 113 中學 - 數字校園與資訊應用社團</strong> 的官方籌備主頁！</p>
+    <p>本社團由高一 (11) 班沈子越發起，目前正在完善建設草案並推進共青團審批流程。我們希望立足新校區的新設備優勢，透過「零成本、低門檻」的數位化工具，為全校師生提供實用、高效的校園服務。</p>
+
+    <h2>📢 籌備動態</h2>
+    <div class="card">
+        <ul>
+            <li><strong>[2026/08/22]</strong> 完成社團建設初步構想，向指導老師提交交流建議書。</li>
+            <li><strong>[2026/08/25]</strong> 官方籌備網站上線，開啟「示範案例」線上展示與意見徵集。</li>
+            <li><strong>[下一步計畫]</strong> 撰寫正式申報材料，構建 M365 協同示範案例向團委與資訊中心展示。</li>
+        </ul>
+    </div>
+
+    <h2>🎯 社團核心定位</h2>
+    <ul>
+        <li>☁️ <strong>零成本引進資源</strong>：推廣微軟官方免費的 Microsoft 365 A1 教育版，不花學校一分錢。</li>
+        <li>🎒 <strong>解決教學痛點</strong>：推廣 OneDrive 雲端與 OneNote 電子課堂筆記本，告別隨身碟中毒與檔案遺失。</li>
+        <li>⚡ <strong>提效自動化</strong>：運用圖形化工具協助老師處理成績數據分析與請假流程自動化。</li>
+    </ul>
+
+    <!-- 3. 背景深灰遮罩層 -->
+    <div id="overlay" class="overlay" onclick="closeDrawer()"></div>
+
+    <!-- 4. 右側抽屜欄目 -->
+    <div id="drawer" class="drawer">
+        <div class="drawer-header">
+            <h2 style="margin:0;">📬 意見反饋與聯繫</h2>
+            <button class="close-btn" onclick="closeDrawer()">&times;</button>
+        </div>
+        
+        <p>社團目前處於草案審批與籌備階段，非常歡迎老師與同學們提出寶貴意見！</p>
+        
+        <h3>👤 籌備發起人資訊</h3>
+        <ul>
+            <li><strong>發起人</strong>：沈子越</li>
+            <li><strong>班級</strong>：高一 (11) 班</li>
+        </ul>
+
+        <h3>💬 意見徵集重點</h3>
+        <ul>
+            <li>你希望社團優先探索哪些數位化工具？</li>
+            <li>老師在教學協同中有哪些具體痛點？</li>
+        </ul>
+
+        <br>
+        <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【數字校園社團】意見反饋">
+            ✉️ 點擊發送郵件給發起人
+        </a>
+    </div>
+
+    <script>
+        function openDrawer() {
+            document.getElementById('drawer').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawer').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
