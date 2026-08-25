@@ -19,21 +19,292 @@
             padding: 20px;
             background-color: #ffffff;
         }
-        nav {
+
+        /* 頂部 Header 與 三條槓圖示 */
+        header {
+            display: flex;
+            align-items: center;
             padding-bottom: 15px;
             border-bottom: 1px solid #e1e4e8;
             margin-bottom: 20px;
         }
-        nav a, nav button {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            margin-right: 15px;
+        .menu-btn {
+            font-size: 1.5rem;
             background: none;
             border: none;
-            font-size: 1rem;
             cursor: pointer;
+            padding: 5px 10px;
+            color: var(--text-color);
+            border-radius: 6px;
+        }
+        .menu-btn:hover {
+            background-color: var(--bg-color);
+        }
+        .header-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-left: 10px;
+        }
+
+        .badge {
+            background-color: #ddf4ff;
+            color: #0969da;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        .card {
+            background: var(--bg-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* 深灰色半透明背景遮罩 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 998;
+        }
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 左側滑出主選單抽屜 */
+        .drawer-left {
+            position: fixed;
+            top: 0;
+            left: -85%;
+            width: 75%;
+            max-width: 320px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+            transition: left 0.3s ease-in-out;
+            z-index: 999;
+            padding: 25px 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .drawer-left.open {
+            left: 0;
+        }
+
+        /* 右側滑出內容抽屜（意見建議頁面） */
+        .drawer-right {
+            position: fixed;
+            top: 0;
+            right: -85%;
+            width: 80%;
+            max-width: 400px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.15);
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+            padding: 25px 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .drawer-right.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .close-btn {
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #57606a;
+        }
+
+        /* 選單列表樣式 */
+        .menu-list {
+            list-style: none;
             padding: 0;
+            margin: 0;
+        }
+        .menu-item {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-item:hover {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+        }
+        .sub-menu {
+            display: none;
+            background-color: #fafafa;
+            padding-left: 15px;
+        }
+        .sub-menu.active {
+            display: block;
+        }
+
+        .btn-mail {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 頂部列：僅保留左上角三條槓 -->
+    <header>
+        <button class="menu-btn" onclick="openLeftDrawer()">☰</button>
+        <span class="header-title">數字校園與資訊應用社團</span>
+    </header>
+
+    <!-- 主頁面唯一內容 -->
+    <h1>💡 數字校園與資訊應用社團 <span class="badge">籌備中</span></h1>
+    <p>歡迎來到 <strong>廣州 113 中學 - 數字校園與資訊應用社團</strong> 的官方籌備主頁！</p>
+    <p>本社團由高一 (11) 班沈子越發起[span_0](start_span)[span_0](end_span)，目前正在完善建設草案並推進共青團審批流程[span_1](start_span)[span_1](end_span)。我們希望立足新校區的新設備優勢，透過「零成本、低門檻」的數位化工具[span_2](start_span)[span_2](end_span)，為全校師生提供實用、高效的校園服務[span_3](start_span)[span_3](end_span)。</p>
+
+    <h2>📢 籌備動態</h2>
+    <div class="card">
+        <ul>
+            <li><strong>[2026/08/22]</strong> 完成社團建設初步構想，向指導老師提交交流建議書[span_4](start_span)[span_4](end_span)。</li>
+            <li><strong>[2026/08/25]</strong> 官方籌備網站上線，開啟「示範案例」線上展示與意見徵集。</li>
+            <li><strong>[下一步計畫]</strong> 撰寫正式申報材料，構建 M365 協同示範案例向團委與資訊中心展示[span_5](start_span)[span_5](end_span)。</li>
+        </ul>
+    </div>
+
+    <h2>🎯 社團核心定位</h2>
+    <ul>
+        <li>☁️ <strong>零成本引進資源</strong>：推廣微軟官方免費的 Microsoft 365 A1 教育版，不花學校一分錢[span_6](start_span)[span_6](end_span)。</li>
+        <li>🎒 <strong>解決教學痛點</strong>：推廣 OneDrive 雲端與 OneNote 電子課堂筆記本，告別隨身碟中毒與檔案遺失[span_7](start_span)[span_7](end_span)。</li>
+        <li>⚡ <strong>提效自動化</strong>：運用圖形化工具協助老師處理成績數據分析與請假流程自動化[span_8](start_span)[span_8](end_span)。</li>
+    </ul>
+
+    <!-- 深灰色背景遮罩 -->
+    <div id="overlay" class="overlay" onclick="closeAllDrawers()"></div>
+
+    <!-- 左側滑出主選單 (三條槓觸發) -->
+    <div id="leftDrawer" class="drawer-left">
+        <div class="drawer-header">
+            <h3 style="margin:0;">選單導覽</h3>
+            <button class="close-btn" onclick="closeAllDrawers()">&times;</button>
+        </div>
+        
+        <ul class="menu-list">
+            <!-- 第一個選項：直接關閉返回首頁 -->
+            <li class="menu-item" onclick="closeAllDrawers()">🏠 籌備首頁</li>
+
+            <!-- 第二個選項：點擊展開多個子選項 -->
+            <li class="menu-item" onclick="toggleSubMenu()">
+                <span>📁 探索與反饋</span>
+                <span>▼</span>
+            </li>
+            
+            <!-- 子選項列表 -->
+            <div id="subMenu" class="sub-menu">
+                <li class="menu-item" onclick="openRightDrawer('aboutDrawer')">📖 建設草案</li>
+                <li class="menu-item" onclick="openRightDrawer('contactDrawer')">📬 意見與建議</li>
+            </div>
+        </ul>
+    </div>
+
+    <!-- 右側滑出抽屜：建設草案 -->
+    <div id="aboutDrawer" class="drawer-right">
+        <div class="drawer-header">
+            <h3 style="margin:0;">📖 建設草案與規劃</h3>
+            <button class="close-btn" onclick="closeRightDrawer('aboutDrawer')">&times;</button>
+        </div>
+        <p>新校區配備了全新的 Windows 系統設備[span_9](start_span)[span_9](end_span)，我們希望藉此契機，由學生發起成立社團，協助學校探索更高效的數位化協同模式[span_10](start_span)[span_10](end_span)。</p>
+        <h4>🌟 三大核心優勢</h4>
+        <ol>
+            <li><strong>完全零成本</strong>：申請微軟官方免費 M365 A1 教育版授權[span_11](start_span)[span_11](end_span)。</li>
+            <li><strong>無縫上手</strong>：全校 Windows 系統開機即可單點登入[span_12](start_span)[span_12](end_span)。</li>
+            <li><strong>門檻極低</strong>：採用拖曳式圖形化操作，無須寫代碼[span_13](start_span)[span_13](end_span)。</li>
+        </ol>
+    </div>
+
+    <!-- 右側滑出抽屜：意見與建議 -->
+    <div id="contactDrawer" class="drawer-right">
+        <div class="drawer-header">
+            <h3 style="margin:0;">📬 意見與建議</h3>
+            <button class="close-btn" onclick="closeRightDrawer('contactDrawer')">&times;</button>
+        </div>
+        <p>社團目前處於草案審批與籌備階段[span_14](start_span)[span_14](end_span)，非常歡迎老師與同學們提出寶貴意見！</p>
+        
+        <h4>👤 籌備發起人</h4>
+        <ul>
+            <li><strong>發起人</strong>：沈子越[span_15](start_span)[span_15](end_span)</li>
+            <li><strong>班級</strong>：高一 (11) 班[span_16](start_span)[span_16](end_span)</li>
+        </ul>
+
+        <h4>💬 意見徵集重點</h4>
+        <ul>
+            <li>你希望社團優先探索哪些數位化工具？</li>
+            <li>老師在教學協同中有哪些具體痛點？</li>
+        </ul>
+
+        <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【數字校園社團】意見反饋">
+            ✉️ 點擊發送郵件給發起人[span_17](start_span)[span_17](end_span)
+        </a>
+    </div>
+
+    <script>
+        // 開啟左側選單抽屜
+        function openLeftDrawer() {
+            closeAllDrawers();
+            document.getElementById('leftDrawer').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        // 切換展開/收合第二個選項的子選項
+        function toggleSubMenu() {
+            document.getElementById('subMenu').classList.toggle('active');
+        }
+
+        // 開啟右側內容抽屜（例如意見建議）
+        function openRightDrawer(drawerId) {
+            document.getElementById(drawerId).classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        // 僅關閉右側抽屜
+        function closeRightDrawer(drawerId) {
+            document.getElementById(drawerId).classList.remove('open');
+        }
+
+        // 關閉所有抽屜與灰色背景
+        function closeAllDrawers() {
+            document.getElementById('leftDrawer').classList.remove('open');
+            document.querySelectorAll('.drawer-right').forEach(d => d.classList.remove('open'));
+            document.getElementById('overlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
         }
         .badge {
             background-color: #ddf4ff;
