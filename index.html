@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>广州市113中学 - 数字校园与信息应用社团</title>
+    <title>广州市第一一三中学 - 数字校园与信息应用社团</title>
     <style>
         :root {
             --primary-color: #0969da;
@@ -53,7 +53,15 @@
             display: flex; justify-content: space-between; align-items: center;
             padding-bottom: 15px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px;
         }
-        .header-left { display: flex; align-items: center; }
+        .header-left { display: flex; align-items: center; gap: 10px; }
+
+        /* 左上角 Logo 样式 */
+        .site-logo {
+            height: 28px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
 
         .btn-icon {
             font-size: 1rem; background: none; border: 1px solid var(--border-color);
@@ -163,7 +171,9 @@
     <header>
         <div class="header-left">
             <button class="btn-icon" onclick="openLeftDrawer()">☰</button>
-            <span style="font-weight:bold; margin-left:10px;" 
+            <!-- 插入最左侧 Logo 图片 -->
+            <img src="logo.jpg" alt="113数字社团Logo" class="site-logo">
+            <span style="font-weight:bold;" 
                   data-zh="数字校园与信息应用社" 
                   data-zht="數位校園與資訊應用社" 
                   data-en="Digital Campus Club">数字校园与信息应用社</span>
@@ -175,7 +185,7 @@
 
     <!-- 纯色 Banner -->
     <div class="hero-banner-pure">
-        <h1 data-zh="广州市第113中学 · 数字校园社团" data-zht="廣州市第113中學 · 數位校園社團" data-en="GZ113 Digital Campus Club">广州市第113中学 · 数字校园社团</h1>
+        <h1 data-zh="广州市第一一三中学 · 数字校园社团" data-zht="廣州市第一一三中學 · 數位校園社團" data-en="GZ113 Digital Campus Club">广州市第一一三中学 · 数字校园社团</h1>
         <p data-zh="探索零成本低门槛的数字化工具，服务日常学习与校园协同" data-zht="探索零成本低門檻的數位化工具，服務日常學習與校園協同" data-en="Exploring zero-cost digital tools for campus productivity">探索零成本低门槛的数字化工具，服务日常学习与校园协同</p>
     </div>
 
@@ -262,7 +272,7 @@
     <!-- Footer 底部 -->
     <footer>
         <div>
-            <span style="font-size:0.85rem; color:#888;">© 2026 广州市第113中学 数字校园社团</span>
+            <span style="font-size:0.85rem; color:#888;">© 2026 广州市第一一三中学 数字校园社团</span>
         </div>
         <div>
             <select class="lang-select" onchange="changeLanguageWithAnimation(this.value)">
@@ -292,7 +302,7 @@
     <!-- 右侧抽屉弹窗 (意见反馈) -->
     <div id="contactDrawer" class="drawer-right">
         <h3 style="margin-top: 0;" data-zh="📬 意见与建议" data-zht="📬 意見與建議" data-en="📬 Feedback">📬 意见与建议</h3>
-        <p style="font-size:0.9rem;" data-zh="发起人：高一 (11) 班 沈子越" data-zht="發起人：高一 (11) 班 沈子越" data-en="Founder: Shen Ziyue (Grade 10, Class 11)">发起人：高一 (11) 班 沈子越</p>
+        <p style="font-size:0.9rem;" data-zh="发起人：高一 (11) 班 沈子越" data-zht="發起人：發起人：高一 (11) 班 沈子越" data-en="Founder: Shen Ziyue (Grade 10, Class 11)">发起人：高一 (11) 班 沈子越</p>
         <p style="font-size:0.85rem; color:#666;" data-zh="对于社团建设有任何想法或建议，欢迎随时联系！" data-zht="對於社團建設有任何想法或建議，歡迎隨時聯繫！" data-en="Feel free to contact us for any club ideas!">对于社团建设有任何想法或建议，欢迎随时联系！</p>
         <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【数字校园社团】意见反馈" 
            data-zh="✉️ 发送 Email" data-zht="✉️ 發送 Email" data-en="✉️ Send Email">✉️ 发送 Email</a>
