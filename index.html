@@ -3,43 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>广州113中学 - 数字校园与信息应用社团（筹备中）</title>
+    <title>广州113中学 - 数字校园与信息应用社团</title>
     <style>
         :root {
             --primary-color: #0969da;
-            --bg-color: #f6f8fa;
+            --bg-color: #ffffff;
+            --card-bg: #f6f8fa;
             --text-color: #24292f;
+            --border-color: #e1e4e8;
         }
+
+        [data-theme="dark"] {
+            --primary-color: #58a6ff;
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --border-color: #30363d;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
+            background-color: var(--bg-color);
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
+            padding: 20px 20px 80px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* 🚨 1. Google 风格顶部蓝蓝色进度条 */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            width: 0%;
+            z-index: 10001;
+            transition: width 0.3s ease-in-out, opacity 0.2s ease;
+            opacity: 0;
+            box-shadow: 0 0 8px var(--primary-color);
+        }
+
+        /* 🚨 2. 全屏轻微暗色淡化遮罩 */
+        #loading-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(1px); /* 轻微模糊 */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 10000;
+        }
+        #loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* 顶部 Header */
         header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             padding-bottom: 15px;
-            border-bottom: 1px solid #e1e4e8;
+            border-bottom: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
-        .menu-btn {
-            font-size: 1.5rem;
+        .header-left { display: flex; align-items: center; }
+
+        .btn-icon {
+            font-size: 1rem;
             background: none;
-            border: none;
+            border: 1px solid var(--border-color);
             cursor: pointer;
-            padding: 5px 10px;
+            padding: 6px 12px;
             color: var(--text-color);
             border-radius: 6px;
         }
-        .menu-btn:hover { background-color: var(--bg-color); }
-        .header-title { font-weight: bold; font-size: 1.1rem; margin-left: 10px; }
-        
+        .btn-icon:hover { background-color: var(--card-bg); }
+
         .badge {
             background-color: #ddf4ff;
             color: #0969da;
@@ -47,284 +93,299 @@
             border-radius: 12px;
             font-size: 0.85rem;
         }
+        [data-theme="dark"] .badge {
+            background-color: #388bfd26;
+            color: #58a6ff;
+        }
+
         .card {
-            background: var(--bg-color);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 6px;
             padding: 15px;
             margin-bottom: 15px;
         }
 
-        /* 页面切换控制 */
+        /* 折叠面板 */
+        details {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        summary { font-weight: bold; }
+
         .page-content { display: none; }
         .page-content.active { display: block; }
 
-        /* 深灰色半透明背景遮罩 */
-        .overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            z-index: 998;
-        }
-        .overlay.active { opacity: 1; visibility: visible; }
-
-        /* 左侧滑出主菜单 */
-        .drawer-left {
-            position: fixed;
-            top: 0; left: -85%;
-            width: 75%; max-width: 320px; height: 100%;
-            background-color: #ffffff;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.15);
-            transition: left 0.3s ease-in-out;
-            z-index: 999;
-            padding: 25px 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
-        }
-        .drawer-left.open { left: 0; }
-
-        /* 右侧滑出抽屉页面 */
-        .drawer-right {
-            position: fixed;
-            top: 0; right: -85%;
-            width: 80%; max-width: 400px; height: 100%;
-            background-color: #ffffff;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.15);
-            transition: right 0.3s ease-in-out;
-            z-index: 1000;
-            padding: 25px 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
-        }
-        .drawer-right.open { right: 0; }
-
-        .drawer-header {
+        /* Google 风格 Footer */
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e1e4e8;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-        .close-btn {
-            font-size: 1.5rem;
-            background: none; border: none;
-            cursor: pointer; color: #57606a;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        /* 菜单列表样式 */
-        .menu-list { list-style: none; padding: 0; margin: 0; }
-        .menu-item {
-            padding: 12px 10px;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            font-weight: 600;
+        .lang-select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
             color: var(--text-color);
-            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
         }
-        .menu-item:hover { background-color: var(--bg-color); color: var(--primary-color); }
-        .sub-menu { display: none; background-color: #fafafa; padding-left: 15px; }
-        .sub-menu.active { display: block; }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 900;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* 侧边菜单抽屉 */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden;
+            transition: 0.3s; z-index: 998;
+        }
+        .overlay.active { opacity: 1; visibility: visible; }
+
+        .drawer-left {
+            position: fixed; top: 0; left: -85%; width: 75%; max-width: 320px; height: 100%;
+            background-color: var(--bg-color); box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+            transition: left 0.3s; z-index: 999; padding: 25px 20px; box-sizing: border-box; overflow-y: auto;
+        }
+        .drawer-left.open { left: 0; }
+
+        .drawer-right {
+            position: fixed; top: 0; right: -85%; width: 80%; max-width: 400px; height: 100%;
+            background-color: var(--bg-color); box-shadow: -2px 0 10px rgba(0,0,0,0.15);
+            transition: right 0.3s; z-index: 1000; padding: 25px 20px; box-sizing: border-box; overflow-y: auto;
+        }
+        .drawer-right.open { right: 0; }
+
+        .menu-list { list-style: none; padding: 0; }
+        .menu-item {
+            padding: 12px 10px; border-bottom: 1px solid var(--border-color); cursor: pointer; font-weight: 600;
+        }
+        .menu-item:hover { color: var(--primary-color); }
 
         .btn-mail {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
+            display: inline-block; background-color: var(--primary-color); color: white;
+            padding: 10px 15px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 顶部栏（左上角三条杠） -->
+    <!-- 🚨 进度条与加载遮罩 -->
+    <div id="progress-bar"></div>
+    <div id="loading-overlay"></div>
+
+    <!-- 顶部栏 -->
     <header>
-        <button class="menu-btn" onclick="openLeftDrawer()">☰</button>
-        <span class="header-title">数字校园与信息应用社团</span>
+        <div class="header-left">
+            <button class="btn-icon" onclick="openLeftDrawer()">☰</button>
+            <span style="font-weight:bold; margin-left:10px;" 
+                  data-zh="数字校园与信息应用社" 
+                  data-zht="數位校園與資訊應用社" 
+                  data-en="Digital Campus Club">数字校园与信息应用社</span>
+        </div>
+        <div>
+            <button class="btn-icon" onclick="toggleTheme()" title="切换主题">🌙 / ☀️</button>
+        </div>
     </header>
 
-    <!-- 1. 栏目一：筹备首页 (默认显示) -->
+    <!-- 首页 -->
     <div id="page-home" class="page-content active">
-        <h1>💡 数字校园与信息应用社团 <span class="badge">筹备中</span></h1>
-        <p>欢迎来到 <strong>广州 113 中学 - 数字校园与信息应用社团</strong> 的官方筹备主页！</p>
-        <p>本社团由高一 (11) 班沈子越发起，目前正在完善建设草案并推进共青团审批流程。我们希望立足新校区的新设备优势，通过“零成本、低门槛”的数字化工具，为全校师生提供实用、高效的校园服务。</p>
+        <h1>💡 <span data-zh="数字校园与信息应用社团" data-zht="數位校園與資訊應用社團" data-en="Digital Campus Club">数字校园与信息应用社团</span> 
+            <span class="badge" data-zh="筹备中" data-zht="籌備中" data-en="Preparing">筹备中</span>
+        </h1>
+        <p data-zh="欢迎来到广州113中学数字校园社团官方筹备主页！本社团由高一(11)班沈子越发起，立足新校区设备优势，提供零成本、低门槛的数字化协同服务。" 
+           data-zht="歡迎來到廣州113中學數位校園社團官方籌備主頁！本社團由高一(11)班沈子越發起，立足新校區設備優勢，提供零成本、低門檻的數位化協同服務。"
+           data-en="Welcome to Guangzhou 113 Middle School Digital Campus Club! Founded by Shen Ziyue (Class 11, Grade 10), we aim to build zero-cost digital solutions.">
+           欢迎来到广州113中学数字校园社团官方筹备主页！本社团由高一(11)班沈子越发起，立足新校区设备优势，提供零成本、低门槛的数字化协同服务。
+        </p>
 
-        <h2>📢 筹备动态</h2>
+        <h2 data-zh="📢 筹备动态" data-zht="📢 籌備動態" data-en="📢 News">📢 筹备动态</h2>
         <div class="card">
             <ul>
-                <li><strong>[2026/08/22]</strong> 完成社团建设初步构想，向指导老师提交交流建议书。</li>
-                <li><strong>[2026/08/25]</strong> 官方筹备网站上线，开启线上展示与意见征集。</li>
-                <li><strong>[下一步计划]</strong> 撰写正式申报材料，构建 M365 协同示范案例。</li>
+                <li><strong>[2026/08/22]</strong> <span data-zh="完成社团初步构想，向指导老师提交交流建议书。" data-zht="完成社團初步構想，向指導老師提交交流建議書。" data-en="Drafted proposal & submitted to advisor.">完成社团初步构想，向指导老师提交交流建议书。</span></li>
+                <li><strong>[2026/08/25]</strong> <span data-zh="官方筹备网站上线，支持多语言与 Google 风格动画。" data-zht="官方籌備網站上線，支援多語言與 Google 風格動畫。" data-en="Official website launched with i18n & Google style animation.">官方筹备网站上线，支持多语言与 Google 风格动画。</span></li>
             </ul>
         </div>
 
-        <h2>🎯 社团核心定位</h2>
-        <ul>
-            <li>☁️ <strong>零成本引进资源</strong>：推广微软官方免费的 Microsoft 365 A1 教育版，不花学校一分钱。</li>
-            <li>🎒 <strong>解决教学痛点</strong>：推广 OneDrive 云端与 OneNote 电子课堂笔记本，告别 U 盘中毒与文件丢失。</li>
-            <li>⚡ <strong>提效自动化</strong>：运用图形化工具协助老师处理成绩数据分析与请假流程自动化。</li>
-        </ul>
+        <h2 data-zh="❓ 常见问题 (FAQ)" data-zht="❓ 常見問題 (FAQ)" data-en="❓ FAQ">❓ 常见问题 (FAQ)</h2>
+        <details>
+            <summary data-zh="加入社团需要有编程基础吗？" data-zht="加入社團需要有程式設計基礎嗎？" data-en="Do I need coding skills?">加入社团需要有编程基础吗？</summary>
+            <p data-zh="不需要！本社团重点推广无代码/低代码工具（如 OneNote、Forms、Power Automate），拖拽式图形操作，零基础轻松上手。" 
+               data-zht="不需要！本社團重點推廣無程式碼/低程式碼工具（如 OneNote、Forms、Power Automate），拖曳式圖形操作，零基礎輕鬆上手。" 
+               data-en="No! We focus on no-code/low-code tools like OneNote, Forms, and Power Automate. Anyone can learn easily.">不需要！本社团重点推广无代码/低代码工具（如 OneNote、Forms、Power Automate），拖拽式图形操作，零基础轻松上手。</p>
+        </details>
+        <details>
+            <summary data-zh="社团会占用大量学习时间吗？" data-zht="社團會佔用大量學習時間嗎？" data-en="Will it take too much study time?">社团会占用大量学习时间吗？</summary>
+            <p data-zh="不会。社团活动主要以轻量化工作坊为主，目标是帮大家提高日常学习与事务处理效率，反而能节省时间。" 
+               data-zht="不會。社團活動主要以輕量化工作坊為主，目標是幫大家提高日常學習與事務處理效率，反而能節省時間。" 
+               data-en="No. We hold lightweight workshops designed to save your time by boosting efficiency.">不会。社团活动主要以轻量化工作坊为主，目标是帮大家提高日常学习与事务处理效率，反而能节省时间。</p>
+        </details>
     </div>
 
-    <!-- 2. 栏目二：建设草案 -->
+    <!-- 建设草案 -->
     <div id="page-about" class="page-content">
-        <h1>📖 社团建设草案与规划</h1>
-        <p>新校区配备了全新的 Windows 系统设备，我们希望以此为契机，由学生发起成立社团，协助学校探索更高效的数字化协同模式。</p>
-        
+        <h1 data-zh="📖 社团建设草案" data-zht="📖 社團建設草案" data-en="📖 Club Proposal">📖 社团建设草案</h1>
         <div class="card">
-            <h3>🌟 三大核心优势</h3>
+            <h3 data-zh="🌟 三大核心优势" data-zht="🌟 三大核心優勢" data-en="🌟 Key Advantages">🌟 三大核心优势</h3>
             <ol>
-                <li><strong>完全零成本</strong>：申请微软官方免费 M365 A1 教育版授权。</li>
-                <li><strong>无缝上手</strong>：全校 Windows 系统开机即可单点登录。</li>
-                <li><strong>门槛极低</strong>：采用拖拽式图形化操作，无需写代码。</li>
+                <li data-zh="完全零成本：申请微软官方免费 M365 A1 教育版授权。" data-zht="完全零成本：申請微軟官方免費 M365 A1 教育版授權。" data-en="100% Free: Apply for free M365 A1 Education license.">完全零成本：申请微软官方免费 M365 A1 教育版授权。</li>
+                <li data-zh="无缝上手：全校 Windows 设备开机即可单点登录。" data-zht="無縫上手：全校 Windows 設備開機即可單點登入。" data-en="Seamless Login: Single sign-on on all school Windows PCs.">无缝上手：全校 Windows 设备开机即可单点登录。</li>
+                <li data-zh="门槛极低：图形化拖拽，无需编写代码。" data-zht="門檻極低：圖形化拖曳，無需編寫程式碼。" data-en="Low Threshold: Drag-and-drop workflow, no coding.">门槛极低：图形化拖拽，无需编写代码。</li>
             </ol>
         </div>
     </div>
 
-    <!-- 3. 栏目三：示范案例展示 -->
-    <div id="page-cases" class="page-content">
-        <h1>🚀 M365 数字化示范案例</h1>
-        <p>本社团将重点规划并演示以下零成本数字化应用场景：</p>
-        
-        <div class="card">
-            <h3>📂 课堂讲义与作业云端化 (OneDrive + OneNote)</h3>
-            <p>老师可建立“联动课堂笔记本”，实时同步课件与复习资料，学生在手机或电脑端随时查看，摆脱传统 U 盘易丢失、易中毒的问题。</p>
-        </div>
-
-        <div class="card">
-            <h3>🤖 自动化工作流 (Power Automate)</h3>
-            <p>运用图形化拖拽工具，自动将线上收集的学生请假表单通知导师，或自动汇总课堂反馈数据，大幅节省人工重复操作。</p>
+    <!-- 预报名 -->
+    <div id="page-form" class="page-content">
+        <h1 data-zh="📋 需求调查与预报名" data-zht="📋 需求調查與預報名" data-en="📋 Survey">📋 需求调查与预报名</h1>
+        <div class="card" style="text-align: center; padding: 30px;">
+            <p data-zh="💡 欢迎联系我们提交建议或预报名：" data-zht="💡 歡迎聯繫我們提交建議或預報名：" data-en="💡 Contact us for feedback or pre-registration:">💡 欢迎联系我们提交建议或预报名：</p>
+            <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【预报名】申请加入数字校园社团" 
+               data-zh="✉️ 点击发送邮件报名" data-zht="✉️ 點擊發送郵件報名" data-en="✉️ Pre-register via Email">✉️ 点击发送邮件报名</a>
         </div>
     </div>
 
-    <!-- 4. 栏目四：推进路线图 -->
-    <div id="page-roadmap" class="page-content">
-        <h1>🛣️ 筹备与推进路线图</h1>
-        <div class="card">
-            <ul>
-                <li><strong>阶段一：概念构想与初探（已完成）</strong><br>确定社团定位，与指导老师展开初期交流与意向讨论。</li>
-                <li><strong>阶段二：线上展示与意见征集（进行中）</strong><br>上线筹备主页，开辟“意见与建议”侧边栏，收集师生实用需求。</li>
-                <li><strong>阶段三：正式申报与示范构建</strong><br>撰写正式申报材料，完成 1-2 个实用协同案例向团委与信息中心展示。</li>
-                <li><strong>阶段四：审批通过与面向全校招新</strong><br>通过共青团审批后，正式开展社团招新与数字化工作坊活动。</li>
-            </ul>
+    <!-- Footer 底部栏 -->
+    <footer>
+        <div>
+            <span style="font-size:0.85rem; color:#888;">© 2026 广州113中学 数字校园社团</span>
         </div>
-    </div>
-
-    <!-- 5. 栏目五：数字工具库 -->
-    <div id="page-tools" class="page-content">
-        <h1>🛠️ 社团数字工具库</h1>
-        <p>未来社团预计推广与培训的软件及服务清单：</p>
-        
-        <div class="card">
-            <ul>
-                <li>☁️ <strong>Microsoft OneDrive</strong>：提供大容量免费云端储存，支持跨设备同步。</li>
-                <li>📔 <strong>Microsoft OneNote</strong>：强大的无边界数字笔记本，适合整理无纸化错题本与课堂笔记。</li>
-                <li>📋 <strong>Microsoft Forms</strong>：用于快速发起课堂测验、问卷调查与活动报名。</li>
-                <li>⚡ <strong>Power Automate</strong>：无代码自动化流程设计，帮助处理繁琐重复的事务。</li>
-            </ul>
+        <div>
+            <select class="lang-select" onchange="changeLanguageWithAnimation(this.value)">
+                <option value="zh">简体中文</option>
+                <option value="zht">繁體中文 (香港/台灣)</option>
+                <option value="en">English</option>
+            </select>
         </div>
-    </div>
+    </footer>
 
-    <!-- 深灰色背景遮罩 -->
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" onclick="scrollToTop()" title="回到顶部">▲</button>
+
+    <!-- 侧边菜单 -->
     <div id="overlay" class="overlay" onclick="closeAllDrawers()"></div>
-
-    <!-- 左侧滑出主菜单 -->
     <div id="leftDrawer" class="drawer-left">
-        <div class="drawer-header">
-            <h3 style="margin:0;">菜单导航</h3>
-            <button class="close-btn" onclick="closeAllDrawers()">&times;</button>
-        </div>
-        
+        <h3>Menu</h3>
         <ul class="menu-list">
-            <!-- 1. 筹备首页 -->
-            <li class="menu-item" onclick="switchPage('page-home')">🏠 筹备首页</li>
-
-            <!-- 2. 探索中心 -->
-            <li class="menu-item" onclick="toggleSubMenu()">
-                <span>📂 探索中心 (5个子栏目)</span>
-                <span>▼</span>
-            </li>
-            
-            <!-- 子选项列表 -->
-            <div id="subMenu" class="sub-menu">
-                <li class="menu-item" onclick="switchPage('page-about')">📖 建设草案</li>
-                <li class="menu-item" onclick="switchPage('page-cases')">🚀 示范案例展示</li>
-                <li class="menu-item" onclick="switchPage('page-roadmap')">🛣️ 推进路线图</li>
-                <li class="menu-item" onclick="switchPage('page-tools')">🛠️ 数字工具库</li>
-                <li class="menu-item" onclick="openRightDrawer('contactDrawer')" style="color:var(--primary-color);">📬 意见与建议 (右侧抽屉)</li>
-            </div>
+            <li class="menu-item" onclick="switchPage('page-home')" data-zh="🏠 筹备首页" data-zht="🏠 籌備首頁" data-en="🏠 Home">🏠 筹备首页</li>
+            <li class="menu-item" onclick="switchPage('page-about')" data-zh="📖 建设草案" data-zht="📖 建設草案" data-en="📖 Proposal">📖 建设草案</li>
+            <li class="menu-item" onclick="switchPage('page-form')" data-zh="📋 需求调查与预报名" data-zht="📋 需求調查與預報名" data-en="📋 Survey">📋 需求调查与预报名</li>
+            <li class="menu-item" onclick="openRightDrawer('contactDrawer')" data-zh="📬 意见反馈" data-zht="📬 意見反饋" data-en="📬 Contact">📬 意见反馈</li>
         </ul>
     </div>
 
-    <!-- 6. 栏目六：右侧滑出抽屉页面（意见与建议） -->
     <div id="contactDrawer" class="drawer-right">
-        <div class="drawer-header">
-            <h3 style="margin:0;">📬 意见与建议</h3>
-            <button class="close-btn" onclick="closeRightDrawer('contactDrawer')">&times;</button>
-        </div>
-        <p>社团目前处于草案审批与筹备阶段，非常欢迎老师与同学们提出宝贵意见！</p>
-        
-        <h4>👤 筹备发起人信息</h4>
-        <ul>
-            <li><strong>发起人</strong>：沈子越</li>
-            <li><strong>班级</strong>：高一 (11) 班</li>
-        </ul>
-
-        <h4>💬 意见征集重点</h4>
-        <ul>
-            <li>你希望社团优先探索哪些数字化工具？</li>
-            <li>老师在教学协同中有哪些具体痛点？</li>
-            <li>对社团未来的活动形式有何期待？</li>
-        </ul>
-
-        <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【数字校园社团】意见反馈">
-            ✉️ 点击发送邮件给发起人
-        </a>
+        <h3 data-zh="📬 意见与建议" data-zht="📬 意見與建議" data-en="📬 Feedback">📬 意见与建议</h3>
+        <p data-zh="发起人：高一 (11) 班 沈子越" data-zht="發起人：高一 (11) 班 沈子越" data-en="Founder: Shen Ziyue (Grade 10, Class 11)">发起人：高一 (11) 班 沈子越</p>
+        <a class="btn-mail" href="mailto:GZ113TE@hotmail.com?subject=【数字校园社团】意见反馈" 
+           data-zh="✉️ 发送邮件" data-zht="✉️ 發送郵件" data-en="✉️ Send Email">✉️ 发送邮件</a>
     </div>
 
     <script>
+        // 🚨 带 Google 同款动画效果的语言切换
+        function changeLanguageWithAnimation(lang) {
+            const progressBar = document.getElementById('progress-bar');
+            const loadingOverlay = document.getElementById('loading-overlay');
+
+            // 1. 触发暗色遮罩 & 显示进度条
+            loadingOverlay.classList.add('active');
+            progressBar.style.opacity = '1';
+            progressBar.style.width = '40%'; // 进度条拉到 40%
+
+            // 2. 模拟 150ms 延迟（文字替换）
+            setTimeout(() => {
+                progressBar.style.width = '80%';
+                
+                // 替换文字内容
+                const elements = document.querySelectorAll('[data-zh]');
+                elements.forEach(el => {
+                    const targetText = el.getAttribute(`data-${lang}`);
+                    if (targetText) el.innerText = targetText;
+                });
+            }, 150);
+
+            // 3. 完成加载，拉满 100% 并淡出
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+                
+                setTimeout(() => {
+                    loadingOverlay.classList.remove('active');
+                    progressBar.style.opacity = '0';
+                    setTimeout(() => { progressBar.style.width = '0%'; }, 200);
+                }, 100);
+            }, 300);
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        }
+
         function openLeftDrawer() {
             closeAllDrawers();
             document.getElementById('leftDrawer').classList.add('open');
             document.getElementById('overlay').classList.add('active');
         }
 
-        function toggleSubMenu() {
-            document.getElementById('subMenu').classList.toggle('active');
-        }
-
         function switchPage(pageId) {
-            var pages = document.querySelectorAll('.page-content');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             closeAllDrawers();
             window.scrollTo(0, 0);
         }
 
         function openRightDrawer(drawerId) {
-            document.getElementById('leftDrawer').classList.remove('open');
+            closeAllDrawers();
             document.getElementById(drawerId).classList.add('open');
             document.getElementById('overlay').classList.add('active');
         }
 
-        function closeRightDrawer(drawerId) {
-            document.getElementById(drawerId).classList.remove('open');
-            document.getElementById('overlay').classList.remove('active');
-        }
-
         function closeAllDrawers() {
             document.getElementById('leftDrawer').classList.remove('open');
-            var rightDrawers = document.querySelectorAll('.drawer-right');
-            for (var j = 0; j < rightDrawers.length; j++) {
-                rightDrawers[j].classList.remove('open');
-            }
+            document.querySelectorAll('.drawer-right').forEach(d => d.classList.remove('open'));
             document.getElementById('overlay').classList.remove('active');
         }
     </script>
